@@ -1,0 +1,112 @@
+/* Carousel.module.css */
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+}
+
+.slide {
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.slideContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+}
+
+.slideImage {
+  max-width: 100%;
+  margin-block: 4rem 1rem;
+  object-fit: contain;
+  height: 60vh;
+}
+
+.slideHead {
+  font-family: 'Spectral', serif;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--primary-text-color);
+}
+
+.slideText {
+  color: var(--primary-text-color);
+  font-size: var(--fs-nm);
+  text-align: justify;
+}
+
+.tip {
+  color: var(--primary-text-color);
+  font-size: var(--fs-nm);
+  font-weight: bold;
+  /*  margin-block-start: 0.5rem;*/
+  padding-block: 0.5rem;
+  text-align: left;
+  font-style: italic;
+}
+
+.tip a {
+  /*  color: #000;*/
+  font-weight: 400;
+  border-inline-start: 1px solid var(--primary-text-color);
+  padding-inline: 0.5rem;
+}
+
+.tip a:hover {
+  text-decoration: underline;
+}
+
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5rem;
+  background-color: var(--body-color);
+  color: var(--primary-text-color);
+  border-radius: 9999px;
+  border: 1px solid var(--primary-text-color);
+  cursor: pointer;
+}
+
+.arrowLeft {
+  left: 0.5rem;
+}
+
+.arrowRight {
+  right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .slideContainer {
+    flex-direction: row-reverse;
+    height: 100vh;
+  }
+
+  .slideImage {
+    max-width: 50%;
+    height: 90vh;
+    margin-block-end: 2rem;
+    transform: translateX(2rem);
+  }
+
+  .slideContent {
+    max-width: 50%;
+  }
+
+  .slideHead {
+    font-size: var(--fs-xl);
+    padding-block-end: 1rem;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slideText {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+}

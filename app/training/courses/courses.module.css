@@ -1,0 +1,317 @@
+.heroSection {
+    background-image: var(--clr-training-gradient);
+    position: relative;
+    overflow: hidden;
+    color: var(--clr-notable);
+    height: calc(100vh - 4.5rem);
+    width: 100%;
+}
+
+.heroSectionImage {
+    width: 100%;
+    mix-blend-mode: soft-light;
+    margin-top: -10%;
+}
+
+.heroSectionVRImage {
+    height: auto;
+    width: 50%;
+    mix-blend-mode: hard-light;
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 10%;
+}
+
+.heroSectionContent {
+    position: absolute;
+    top: 20%;
+    right: -37%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+}
+
+.heroSectionContent h1,
+.heroSectionContent p {
+    max-width: 30%;
+    color: #fff;
+}
+
+.heroSectionContent h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+}
+
+.heroSectionContent p {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.button {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: .5rem 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 150ms ease-in-out;
+    font-family: inherit;
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.button:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    display: block;
+    background-color: #fff;
+    color: #000;
+    transition: all 150ms ease-in-out;
+    z-index: -1;
+}
+
+.button a:hover {
+    color: #000;
+}
+
+.button:hover {
+    color: #000;
+    padding: .5rem 1rem;
+    line-height: 1rem;
+}
+
+.button:hover:before {
+    left: 0;
+    color: #000;
+}
+
+.heroSectionVRImage {
+    animation: VRimgg 2s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes VRimgg {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-22px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Courses Styling */
+.courses {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding-left: 9.3rem;
+}
+
+.course {
+    background-color: #f4f4f4;
+    height: 35vh;
+    min-width: 12vw;
+    width: 13vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: relative;
+    padding: 2rem;
+}
+
+.course:hover {
+    box-shadow: 2px 6px 10px #b5b5b5,
+        4px 7px 10px #e4dfdf;
+}
+
+.courseVision {
+    mix-blend-mode: hard-light;
+    position: absolute;
+    top: 0;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.course:first-child .courseVision {
+    background-color: rgb(255, 0, 0);
+}
+
+.course:nth-child(2) .courseVision {
+    background-color: rgb(0, 170, 0);
+}
+
+.course:nth-child(3) .courseVision {
+    background-color: rgb(255, 166, 0);
+}
+
+.course:nth-child(4) .courseVision {
+    background-color: #610083;
+}
+
+.course:nth-child(5) .courseVision {
+    background-color: rgb(168, 97, 249);
+}
+
+.course:last-child .courseVision {
+    background-color: rgb(0, 0, 255);
+}
+
+
+.course h3 {
+    padding-top: 2.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.course p {
+    padding-block-start: .4rem;
+    font-style: italic;
+    font-weight: 500;
+
+}
+
+@media (max-width: 1124px) {
+    .heroSectionContent {
+        position: absolute;
+        top: 15%;
+        right: -40%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heroSectionContent h1 {
+        font-size: 2.2rem;
+    }
+
+    .heroSectionContent p {
+        font-size: .8rem;
+        font-weight: 400;
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .course {
+        min-width: 15vw;
+        width: 15vw;
+    }
+}
+
+@media (max-width: 950px) {
+    .heroSectionVRImage {
+        top: 10%;
+        left: 3%;
+    }
+
+    .course {
+        width: 20vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .heroSectionVRImage {
+        top: 0;
+        left: 10%;
+        width: 65%;
+    }
+
+    .heroSectionContent {
+        position: relative;
+        color: #fff;
+        top: 0;
+        right: 0;
+        align-items: center;
+        padding-top: 1.5rem;
+    }
+
+    .heroSectionContent h1,
+    .heroSectionContent p {
+        max-width: 100%;
+        padding: 0 2rem;
+    }
+
+    .heroSectionContent h1 {
+        font-size: 3rem;
+        padding-bottom: 1rem;
+    }
+
+    .heroSectionContent p {
+        font-size: 1.5rem;
+        padding-block-end: 4rem;
+    }
+
+    .courses {
+        background-color: #f4f4f4;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        height: 100%;
+        padding-top: 4rem;
+        padding-block-end: 4rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .heroSectionContent h1 {
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .heroSectionContent p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .heroSectionContent {
+        padding-top: 1.2rem;
+    }
+
+    .heroSectionContent h1,
+    .heroSectionContent p {
+        max-width: 100%;
+        /* padding: 0 2rem; */
+    }
+
+    .heroSectionContent h1 {
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
+    }
+
+    .heroSectionContent p {
+        font-size: 12px;
+    }
+}

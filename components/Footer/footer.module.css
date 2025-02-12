@@ -1,0 +1,144 @@
+.container {
+  width: min(1280px, 100% - 2rem);
+  padding-inline: 7rem;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  /* background-image: linear-gradient(97.08deg, #0e0325 5.27%, #795d75 105.49%); */
+  background-color: #500480;
+}
+
+.footerWrapper {
+  color: var(--color-white);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+.footerGroup {
+  flex: 0 1 250px;
+  font-weight: 300;
+  gap: 1rem;
+}
+
+.socialLink {
+  font-size: 18px;
+  color: var(--color-white);
+  margin-inline: 1rem;
+}
+
+.footerHeading,
+.footerInputLabel,
+.footerGroup .logo {
+  margin-block-end: 1rem;
+}
+.footerHeading {
+  padding-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footerLink {
+  color: var(--color-white);
+  font-size: 12px;
+  display: block;
+  margin-block-end: 0.5rem;
+  transition: all ease-in-out 0.3s;
+}
+
+.footerInputLabel {
+  display: block;
+  font-size: 1.17rem;
+}
+
+.footerInputGroup {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.footerInput {
+  border: none;
+  height: 40px;
+  display: block;
+  flex: 1 1 245px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  padding-inline: 1rem;
+  padding-block: 0.85rem;
+  margin-block: 0.85rem;
+}
+
+/* @media screen and (max-width: 920px) {
+  .footerWrapper {
+    flex-direction: column-reverse;
+  }
+
+  .footerGroup {
+    flex: 0 1 180px;
+  }
+
+  .footerItem {
+    margin-block-end: 0.5rem;
+  }
+
+  .footerHeading,
+  .footerInputLabel,
+  .footerGroup .logo {
+    margin-block-end: 1rem;
+  }
+
+  .footerInputGroup {
+    gap: 1rem;
+  }
+
+  .footerInput {
+    flex: 0 1 245px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .newsletter {
+    margin-block-end: 2rem;
+  }
+} */
+
+/* .footnoteWrapper {
+  width: 100%;
+  height: 60px;
+  color: var(--color-white);
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-block-end: 2rem;
+  padding-block-start: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-block-start: 0.8px solid var(--color-white);
+} */
+
+.backToTop {
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  padding: 0.5rem 0.875rem;
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: linear-gradient(97.08deg, #0e0325 5.27%, #160141 105.49%);
+}
+
+/* @media screen and (max-width: 1024px) {
+  .backToTop {
+    padding: 0.475rem 0.675rem;
+  }
+} */
+
+.hidden {
+  display: none;
+}

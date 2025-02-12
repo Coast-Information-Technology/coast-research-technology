@@ -1,0 +1,353 @@
+/* Slider.module.css */
+
+.slider {
+  width: 100%;
+  height: calc(100vh - 10vh);
+  background-color: #f7f7f7;
+  /* padding-top: 2rem; */
+}
+
+.heroPage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 10vh);
+  padding-left: 3rem;
+  position: relative;
+  /* Added position relative to heroPage */
+}
+
+.textContent {
+  padding: 20px;
+  width: 50%;
+}
+
+.textContent h1 {
+  font-size: 3.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  padding-block: 1.5rem;
+}
+
+.textContent p {
+  padding-bottom: 4rem;
+}
+
+.textContent .btn {
+  background: #500480;
+  /* Button Background Color */
+  color: #fff;
+  /* Button Text Color */
+  padding: 0.75rem 1.5rem;
+  /* Button Padding */
+  border: none;
+  /* Remove default button border */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+}
+
+.textContent .btn:hover {
+  background: #3c026d;
+  /* Darken button background color on hover */
+}
+
+.sliderControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center align slider controls horizontally */
+  position: absolute;
+  /* Position slider controls relative to heroPage */
+  bottom: 10px;
+  /* Adjust as needed */
+  left: 50%;
+  /* Move controls to the middle horizontally */
+  transform: translateX(-50%);
+  /* Adjust to center controls */
+}
+
+.chevronBtn {
+  padding: 1.2rem;
+  border-radius: 50%;
+  border: 1px solid #3c026d;
+}
+
+.dots {
+  display: flex;
+}
+
+.slideImage {
+  position: absolute;
+  right: 0;
+  margin-right: 2.5rem;
+  max-width: 100%;
+  /* border-radius: 39% 57% 25% 71% / 31% 32% 55% 64%; Clip-path */
+}
+
+@media (max-width: 1024px) {
+  .heroPage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .textContent h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroPage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-left: 1rem;
+  }
+
+  .textContent {
+    width: 55%;
+  }
+
+  .textContent h1 {
+    font-size: 2.7rem;
+    padding-block: 0;
+  }
+
+  .textContent p {
+    padding-bottom: 2rem;
+  }
+
+  .slideImage {
+    top: 0;
+    margin-right: -10rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroPage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .textContent {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+  }
+
+  .slideImage {
+    top: 0;
+    margin-right: -6rem;
+    max-width: 100%;
+    z-index: 1;
+    opacity: 0.2;
+  }
+}
+
+************************************************************************************************** ************************************************************************************************
+/*.container {
+  width: min(1280px, 100% - 2rem);
+  padding-inline: 7rem;
+} */
+
+/* About Us && Services Styling */
+.about {
+  width: 100%;
+  height: auto;
+}
+
+.services {
+  width: 100%;
+  height: auto;
+  padding: 5rem 7rem;
+}
+
+.aboutHeader,
+.servicesHeader {
+  color: var(--primary-text-color);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutHeading,
+.servicesHeading,
+.testimonialHeading {
+  font-family: var(--ff-head);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-medium);
+  text-transform: capitalize;
+  color: var(--primary-text-color);
+}
+
+.aboutHeading .graphic,
+.servicesHeading .graphic,
+.testimonialHeading .graphic {
+  display: inline;
+  vertical-align: middle;
+  filter: drop-shadow(0px 9px 18px rgba(0, 0, 0, 0.12));
+}
+
+.aboutWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--clr-about-wrapper);
+  padding-block: 3rem;
+}
+
+.aboutContent {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.lead {
+  width: min(66ch, 100%);
+  font-size: 14px;
+  padding-inline: 1rem;
+  color: var(--clr-hero-services);
+}
+
+.servicesWrapper {
+  width: 100%;
+}
+
+.servicesCards {
+  margin-block-start: 2rem;
+  width: 100%;
+  display: flex;
+  min-height: 400px;
+  height: auto;
+  gap: 2rem;
+}
+
+.card {
+  flex: 0 1 50%;
+}
+
+.card:nth-of-type(2) {
+  align-self: flex-end;
+}
+
+.cardHeader {
+  width: 100%;
+  margin-block-end: 1rem;
+}
+
+.cardBody {
+  max-width: 45ch;
+  margin-block-end: 2rem;
+  color: var(--primary-text-color);
+}
+
+.cardHeading {
+  font-family: var(--ff-head);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-text-color);
+}
+
+@media (max-width: 768px) {
+  .servicesCards {
+    flex-direction: column;
+  }
+
+  .services {
+    padding: 5rem 3rem;
+  }
+
+  .aboutHeading,
+  .servicesHeading,
+  .testimonialHeading {
+    font-size: var(--fs-nm);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .services__cards {
+    flex-direction: column;
+  }
+
+  .cardHeader {
+    margin-block-end: 0.5rem;
+  }
+
+  .cardBody {
+    margin-block-end: 0.875rem;
+  }
+
+  .cardHeading {
+    font-size: 1.125rem;
+  }
+
+  .card,
+  .card:nth-of-type(2) {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cardBody {
+    text-align: justify;
+  }
+
+  .aboutHeading,
+  .servicesHeading,
+  .testimonialHeading {
+    font-size: var(--fs-md);
+  }
+}
+
+/* Testimonial Styling */
+.testimonialName {
+  margin: -17px auto 0;
+  display: table;
+  width: auto;
+  padding: 5px 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  box-shadow:
+    0 9px 18px rgba(0, 0, 0, 0.12),
+    0 5px 7px rgba(0, 0, 0, 0.05);
+}
+
+.shadowEffect {
+  background-image: linear-gradient(52.08deg, #240128 5.27%, #8a0383 127.49%);
+  color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid #ececec;
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Footer Styling */
+.footerItem svg {
+  margin-inline-end: 1rem;
+}
+
+.quotecardContent {
+  flex-grow: 1;
+  font-size: 0.875rem;
+  text-align: center;
+  padding-block-start: 2rem;
+}
+
+.quotecardContent .lead {
+  width: auto;
+  max-width: 60ch;
+}
+
+.quotecardName {
+  font-size: 0.875rem;
+  color: var(--color-dark);
+}

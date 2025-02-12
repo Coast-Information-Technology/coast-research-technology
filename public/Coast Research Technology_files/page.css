@@ -1,0 +1,121 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./app/coast-craft/coast-craft.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+.coast-craft_section__CZaSS {
+    margin-inline: 1rem;
+}
+
+.coast-craft_trendingNews__kJvBa {
+    padding: 1.5rem;
+    margin-block-start: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--trending-news-bg);
+}
+
+.coast-craft_trendingNews__kJvBa h2 {
+    background-color: var(--primary-text-color);
+    padding: 1rem 2rem;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-md);
+    color: var(--plain-color);
+}
+
+
+/* Ensure list items are hidden and positioned on top of each other */
+.coast-craft_list___4JUg {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+.coast-craft_carouselItem__GkYvb {
+    display: none;
+    width: 100%;
+    /* top: 0; */
+}
+
+.coast-craft_carouselItem__GkYvb.coast-craft_active__0LhzG {
+    display: flex;
+}
+
+.coast-craft_heroArea__AaHzn {
+    margin-block-start: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.coast-craft_blog__ImeDL {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+
+.coast-craft_overlayContainer__W1OMh {
+    position: relative;
+    overflow: hidden;
+}
+
+.coast-craft_imageWrapper__E37eG {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.coast-craft_blogImage__0HOGS {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.coast-craft_imageOverlay__AgLss {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.coast-craft_overlayContainer__W1OMh:hover .coast-craft_imageOverlay__AgLss {
+    opacity: 1;
+}
+
+.coast-craft_date__WaUs8 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10;
+    color: white;
+}
+
+
+
+
+/* Welcome to the Css Desktop view */
+@media (min-width:768px) {
+
+    .coast-craft_trendingNews__kJvBa {
+        flex-direction: row;
+        padding: 1.5rem 3rem;
+        gap: 2.1rem;
+    }
+
+
+}
+
+@media (min-width:1024px) {
+    .coast-craft_blog__ImeDL {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

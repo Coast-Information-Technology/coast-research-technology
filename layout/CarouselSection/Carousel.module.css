@@ -1,0 +1,148 @@
+.embla {
+  position: relative;
+  width: 100%;
+  padding: 2.5rem 0 4rem 0;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 35%;
+}
+.embla::before,
+.embla::after {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  content: "";
+  height: 80%;
+  position: absolute;
+  width: 10%;
+  z-index: 2;
+}
+.embla::before {
+  left: 0;
+  top: 0;
+}
+.embla::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.emblaViewport {
+  overflow: hidden;
+}
+.emblaContainer {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  gap: 3rem;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.emblaSlide {
+  box-shadow: 0 10px 10px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.emblaSlide:hover {
+  background-color: #3c026d;
+  cursor: pointer;
+  color: #fff;
+}
+.emblaSlideNumber {
+  border-radius: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: var(--slide-height);
+}
+.emblaControls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+.emblaButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+}
+.emblaButton {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  width: 3.6rem;
+  height: 3.6rem;
+  z-index: 1;
+  border-radius: 50%;
+  color: var(--text-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emblaButton:disabled {
+  color: var(--detail-high-contrast);
+}
+.emblaButtonSvg {
+  width: 35%;
+  height: 35%;
+}
+.emblaPlay {
+  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+  border-radius: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-end;
+  color: var(--text-body);
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 0 2.4rem;
+  min-width: 8.4rem;
+}
+
+.testimonialHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.testimonialHeading {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--color-primary);
+}
+
+.testimonialHeading .graphic {
+  display: inline;
+  vertical-align: middle;
+  filter: drop-shadow(0px 9px 18px rgba(0, 0, 0, 0.12));
+}

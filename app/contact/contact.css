@@ -1,0 +1,363 @@
+.contact-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+}
+
+.contact-container h1 {
+  font-family: var(--ff-head);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--primary-text-color);
+  text-transform: uppercase;
+  margin-block: 7rem 12rem;
+}
+
+.attach {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.phone,
+.headset {
+  display: none;
+}
+
+.headset-mobile {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  height: auto;
+  mix-blend-mode: hard-light;
+  top: 5rem;
+  animation: heartbeat 1.5s ease-in-out infinite both;
+  z-index: 2;
+  justify-content: center;
+}
+
+.headset-mobile img {
+  max-width: 25rem;
+}
+
+.contact-content {
+  width: 90%;
+}
+
+.contact-form {
+  position: relative;
+  /* height:; */
+  width: 100%;
+  padding: 5rem 2rem;
+  background-color: var(--body-color);
+  border-radius: 4px;
+  color: #333;
+  box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.contact-form:after {
+  position: absolute;
+  content: '';
+  right: -10px;
+  bottom: 18px;
+  width: 0;
+  height: 0;
+  border-left: 0px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--primary-text-color);
+}
+
+.form-control {
+  position: relative;
+  margin: 20px 0 40px;
+  width: 100%;
+}
+
+.form-control input,
+.form-control textarea {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px var(--primary-text-color) solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: var(--primary-text-color);
+}
+
+.form-control input:focus,
+.form-control input:valid,
+.form-control textarea:focus,
+.form-control textarea:valid {
+  outline: 0;
+  border-bottom-color: var(--primary-text-color);
+}
+
+.form-control label {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  color: var(--primary-text-color);
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus+label span,
+.form-control input:valid+label span,
+.form-control textarea:focus+label span,
+.form-control textarea:valid+label span {
+  color: var(--primary-text-color);
+  transform: translateY(-30px);
+}
+
+.contact-form .submit-btn {
+  position: absolute;
+  border-radius: 30px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  background-color: var(--primary-text-color);
+  color: var(--body-color);
+  padding: 12px 25px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  right: -10px;
+  bottom: -20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: -5px 6px 20px 0px rgba(26, 26, 26, 0.4);
+}
+
+.contact-form .submit-btn:hover {
+  background-color: var(--clr-secondary);
+  box-shadow: -5px 6px 20px 0px rgba(88, 88, 88, 0.569);
+}
+
+.contact-details {
+  text-align: center;
+  margin-block: 5rem 1rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(2rem);
+  backdrop-filter: blur(2rem);
+  box-shadow:
+    -18px 18px 36px var(--clr-footer-upper-shadow),
+    18px -18px 36px var(--clr-footer-lower-shadow);
+  border-radius: 0.4rem;
+}
+
+.contact-details p {
+  margin: 5px 0;
+  font-size: var(--fs-sm);
+  color: var(--clr-contact-form);
+  text-transform: uppercase;
+}
+
+p.tel-number {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--primary-text-color);
+}
+
+div.contact-content>div>div:nth-child(2) {
+  margin-block-start: 2rem;
+}
+
+.social {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.social a {
+  text-decoration: none;
+  color: var(--primary-text-color);
+  opacity: 0.8;
+  margin: 0 10px;
+  font-size: 1.2em;
+  transition: opacity 0.3s;
+}
+
+iframe {
+  width: 100%;
+  margin-top: 5rem;
+  mix-blend-mode: luminosity;
+}
+
+@keyframes heartbeat {
+  from {
+    transform: scaleY(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+
+  10% {
+    transform: scaleY(0.91);
+    animation-timing-function: ease-in;
+  }
+
+  17% {
+    transform: scaleY(0.98);
+    animation-timing-function: ease-out;
+  }
+
+  33% {
+    transform: 0.87;
+    animation-timing-function: ease-in;
+  }
+
+  45% {
+    transform: scaleY(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-container {
+    position: relative;
+  }
+
+  .contact-container h1 {
+    margin-top: 8rem;
+    font-size: var(--fs-lg-pc);
+    /* z-index: 3; */
+  }
+
+  p.contact-subtitle {
+    margin-block: 1rem;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  p.tel-number {
+    font-size: 1rem;
+  }
+
+  .social a {
+    font-size: 1.5em;
+  }
+
+  .contact-form {
+    padding: 5rem;
+  }
+
+  .headset-mobile img {
+    max-width: 35rem;
+  }
+
+  .headset-mobile {
+    top: 0;
+  }
+
+  .contact-content {
+    margin-block-start: 5rem;
+  }
+
+  @keyframes swirl-in-top-fwd {
+    0% {
+      transform: rotate(-540deg) scale(0);
+      transform-origin: 50% 0;
+      opacity: 0;
+    }
+
+    100% {
+      transform: rotate(0) scale(1);
+      transform-origin: 50% 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes heartbeat {
+    from {
+      transform: scaleY(1);
+      transform-origin: center center;
+      animation-timing-function: ease-out;
+    }
+
+    10% {
+      transform: scaleY(0.91);
+      animation-timing-function: ease-in;
+    }
+
+    17% {
+      transform: scaleY(0.98);
+      animation-timing-function: ease-out;
+    }
+
+    33% {
+      transform: 0.87;
+      animation-timing-function: ease-in;
+    }
+
+    45% {
+      transform: scaleY(1);
+      animation-timing-function: ease-out;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  p.tel-number {
+    font-size: 1.3rem;
+  }
+
+  .contact-content {
+    display: flex;
+    width: 80%;
+    gap: 3rem;
+    margin: auto;
+    margin-top: 5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contact-details {
+    display: flex;
+    width: 100%;
+    max-width: 20rem;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: baseline;
+    gap: 2rem;
+  }
+
+  .phone,
+  .headset {
+    display: inline;
+    position: absolute;
+    width: 100%;
+    max-width: 25rem;
+    height: auto;
+    mix-blend-mode: hard-light;
+  }
+
+  .phone {
+    left: 0;
+    top: -5.1rem;
+    animation: swirl-in-top-fwd 1.2s ease-out both;
+  }
+
+  .headset {
+    right: 0;
+    top: -5.1rem;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+  }
+
+  .headset-mobile {
+    display: none;
+  }
+}

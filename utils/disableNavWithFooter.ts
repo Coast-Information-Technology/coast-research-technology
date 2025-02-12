@@ -1,0 +1,17 @@
+export const disableNavWithFooter = [
+  '/not-found',
+  '/dashboard',
+  '/settings',
+  '/profile',
+  '/students',
+  '/programs',
+  '/payments',
+  '/users',
+  '/bookmarks',
+  '/comments',
+  '/newsletters',
+  '/posts',
+  '/login',
+  '/register',
+  '/forgot-password',
+];

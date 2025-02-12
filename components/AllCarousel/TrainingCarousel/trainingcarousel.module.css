@@ -1,0 +1,114 @@
+/* Carousel.module.css */
+
+.carouselContainer {
+    position: relative;
+    width: 100%;
+}
+
+.slide {
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+.slideContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+}
+
+.students {
+    display: flex;
+    align-items: center;
+    height: 6vh;
+    background-color: var(--primary-text-color);
+}
+
+.cLipPath {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.slideImage {
+    width: 15vw;
+    margin-block: 4rem 1rem;
+    object-fit: contain;
+    height: 30vh;
+    position: relative;
+    background: var(--clr-secondary-text);
+    margin: var(--m);
+    height: calc(var(--s)*1.1547);
+    align-content: center;
+    clip-path: polygon(50% 0%, 100% 18%, 100% 82%, 50% 100%, 0% 82%, 0% 18%);
+    object-fit: cover;
+    margin-bottom: calc(var(--m) - var(--s)*0.2);
+
+}
+
+
+.slideHead {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    color: #000;
+}
+
+.slideText {
+    color: var(--primary-text-color);
+    font-size: var(--fs-nm);
+    font-weight: 500;
+    text-align: justify;
+}
+
+.arrowButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+    background-color: var(--body-color);
+    color: var(--primary-text-color);
+    border-radius: 9999px;
+    border: 1px solid var(--primary-text-color);
+    cursor: pointer;
+}
+
+.arrowLeft {
+    left: 0.5rem;
+}
+
+.arrowRight {
+    right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .slideContainer {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        height: 100vh;
+        padding: 0 6rem;
+    }
+
+    .slideImage {
+        max-width: 50%;
+        height: 20vh;
+        margin-block-end: 2rem;
+        transform: translateX(2rem);
+    }
+
+    .slideContent {
+        max-width: 50%;
+    }
+
+    .slideHead {
+        font-size: var(--fs-xl);
+        padding-block-end: 1.5rem;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slideText {
+        font-size: 1.2rem;
+        text-align: left;
+    }
+}

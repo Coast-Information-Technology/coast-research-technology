@@ -1,0 +1,89 @@
+import React, { useState } from "react";
+import { ChevronsLeft, ChevronsRight, Eye, EyeOff } from "lucide-react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import styles from "./page.module.css";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const schema = z.object({
+  fName: z.string().min(2, { message: "First Name is required" }),
+  lName: z.string().min(2, { message: "Last Name is required" }),
+  email: z.string().email({ message: "Invalid email format" }).min(1, { message: "Email is required" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+  confirmPassword: z.string().min(8, { message: "Confirm Password is required" }),
+  phone: z.string().min(11, { message: "Phone Number must be 11 digits" }),
+  address: z.string().min(1, { message: "Address is required" }),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"], // Corrected path
+});
+
+type FormFields = z.infer<typeof schema>;
+
+const Page: React.FC = () => {
+  const [sliderValue, setSliderValue] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = (field: string) => {
+    if (field === "password") {
+      setShowPassword((prev) => !prev);
+    } else if (field === "confirmPassword") {
+      setShowConfirmPassword((prev) => !prev);
+    }
+  };
+
+  const nextSlider = () => {
+    setSliderValue(prevValue => prevValue - 25); // Adjusted for 4 steps
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const prevSlider = () => {
+    setSliderValue(prevValue => prevValue + 25); // Adjusted for 4 steps
+    setCurrentPage(prevPage => prevPage - 1);
+  };
+
+  const { 
+    register, 
+    handleSubmit, 
+    setError,
+    formState: {errors, isSubmitting},
+    getValues
+  } = useForm<FormFields>(
+    {
+      resolver: zodResolver(schema),
+    } 
+  );
+
+  // Other functions remain unchanged...
+
+  return (
+    <main className="h-screen w-screen flex justify-center items-center">
+      <section className="h-[95%] w-[48vw] bg-white shadow-md rounded-md py-5 overflow-x-hidden">
+        <div className={`${styles.progressBar} px-10 pt-12 gap-4 progress-bar w-full flex justify-between items-center`}>
+          {/* Apply styles based on the currentPage */}
+          <div className={`step text-center ${currentPage === 0 ? "active" : ""}`}>
+            <p>Bio Data</p>
+          </div>
+          <div className={`step text-center ${currentPage === 1 ? "active" : ""}`}>
+            <p>Education Experience</p>
+          </div>
+          <div className={`step text-center ${currentPage === 2 ? "active" : ""}`}>
+            <p>Work Experience</p>
+          </div>
+          <div className={`step text-center ${currentPage === 3 ? "active" : ""}`}>
+            <p>Professional Skills</p>
+          </div>
+          <div className={`step text-center ${currentPage === 4 ? "active" : ""}`}>
+            <p>Resume & Job Type</p>
+          </div>
+        </div>
+
+        {/* Rest of the code remains the same... */}
+      </section>
+    </main>
+  );
+};
+
+export default Page;

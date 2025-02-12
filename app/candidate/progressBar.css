@@ -1,0 +1,57 @@
+/* Pages and Progress Bar */
+
+.progressBar {
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.step {
+  flex: 1;
+  position: relative;
+}
+
+.step p {
+  font-size: 14px;
+}
+
+.bullet {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.bullet span {
+  font-weight: bold;
+}
+
+.bullet.active {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  background-color: #007bff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 10px;
+  visibility: hidden;
+}
+
+.step.active .check {
+  visibility: visible;
+}
