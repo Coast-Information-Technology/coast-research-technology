@@ -1,6 +1,6 @@
 # Coast Research Technology - Official Website
 
-![Coast Research Technology Logo](https://coastresearchtechnology.com.ng/_next/image?url=%2FlogoCoast.png)
+![Coast Research Technology Logo](https://firebasestorage.googleapis.com/v0/b/coast-craft.appspot.com/o/logo.png?alt=media&token=afb6dcff-8931-4bb6-9964-98073c1e16a2)
 
 Welcome to the official website of **Coast Research Technology**! 🚀 We are dedicated to solving real-world problems through **innovative technology**, **talent development**, and **fintech solutions**.
 
