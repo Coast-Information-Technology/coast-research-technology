@@ -10,7 +10,7 @@ export const Sidebar = () => {
   const pathname = usePathname(); // Get the current path
 
   return (
-    <aside className="w-[12rem] bg-gray-200 text-primary-text-color flex-shrink-0">
+    <aside className="w-[12rem] bg-gray-200 text-primary-text-color flex-shrink-0 h-[100vh]">
       <div>
         <Image
           src="/coastresearch.svg"
@@ -27,11 +27,11 @@ export const Sidebar = () => {
             <Link
               href={sidebarItems.path}
               key={sidebarItems.id}
-              className={`flex items-center gap-2 px-4 py-3 ml-4 mb-1 hover:bg-[#3e114e] hover:text-white hover:rounded-l-[30px] transition-none ${
+              className={`flex items-center text-[14px] gap-2 px-6 py-2 ml-4 mb-1 hover:bg-[#3e114e] hover:text-white hover:rounded-l-[30px] transition-none ${
                 isActive ? 'bg-[#3e114e] text-white rounded-l-[30px]' : ''
               }`}
             >
-              <sidebarItems.icon className="transition-none" />
+              <sidebarItems.icon className="transition-none" size={14} />
               <span>{sidebarItems.title}</span>
             </Link>
           );

@@ -10,6 +10,7 @@
    },
    "dependencies": {
       "@formkit/auto-animate": "^0.8.1",
+      "@heroui/avatar": "^2.2.7",
       "@heroui/chip": "2.2.7",
       "@heroui/modal": "2.2.8",
       "@heroui/popover": "2.3.10",

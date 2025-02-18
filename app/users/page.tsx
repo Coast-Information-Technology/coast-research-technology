@@ -161,9 +161,13 @@ const page = () => {
       case 'name':
         return (
           <User
-            avatarProps={{ radius: 'lg', src: user.avatar }}
+            avatarProps={{
+              radius: 'lg',
+              src: user.avatar,
+            }}
             description={user.email}
             name={cellValue}
+            className="opacity-100"
           >
             {user.email}
           </User>

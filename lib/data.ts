@@ -1,3 +1,4 @@
+import { FaSuitcase } from 'react-icons/fa';
 import {
   ICarouselItem,
   ISlide,
@@ -432,42 +433,48 @@ export const sidebar: ISideBar[] = [
   },
   {
     id: 4,
+    title: 'Employees',
+    path: '/employees',
+    icon: FaSuitcase,
+  },
+  {
+    id: 5,
     title: 'Programs',
     path: '/programs',
     icon: Book,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Payments',
     path: '/payments',
     icon: Banknote,
   },
   {
-    id: 6,
+    id: 7,
     title: 'Comments',
     path: '/comments',
     icon: MessageSquare,
   },
   {
-    id: 7,
+    id: 8,
     title: 'Posts',
     path: '/posts',
     icon: Upload,
   },
   {
-    id: 8,
+    id: 9,
     title: 'Bookmarks',
     path: '/bookmarks',
     icon: Bookmark,
   },
   {
-    id: 8,
+    id: 10,
     title: 'Newsletters',
     path: '/newsletters',
     icon: Newspaper,
   },
   {
-    id: 9,
+    id: 11,
     title: 'Settings',
     path: '/settings',
     icon: Settings,
