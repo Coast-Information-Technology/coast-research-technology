@@ -12,7 +12,7 @@ import {
   TableCell,
   Pagination,
   getKeyValue,
-} from "@heroui/react";
+} from '@heroui/react';
 import React, { SVGProps } from 'react';
 
 const page = () => {

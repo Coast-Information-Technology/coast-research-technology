@@ -4,10 +4,6 @@ import { z } from 'zod';
 export const signUpSchema = z
   .object({
     email: z.string().email('Invalid email address'),
-    phoneNumber: z
-      .string()
-      .min(11, 'Phone number must be at least 11 digits')
-      .max(11, 'Phone number must be at most 11 digits'),
     password: z.string().min(8, 'Password must be at least 8 characters'),
     confirmPassword: z
       .string()
@@ -20,10 +16,7 @@ export const signUpSchema = z
 
 // Define the Zod schema
 export const LoginFormSchema = z.object({
-  phone: z
-    .string()
-    .min(11, 'Phone number must be at least 11 digits')
-    .max(11, 'Phone number must be at most 11 digits'),
+  email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
 });
 

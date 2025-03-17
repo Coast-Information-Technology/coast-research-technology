@@ -20,9 +20,9 @@ const SignUpPage: React.FC = () => {
 
   const [formData, setFormData] = useState({
     email: '',
-    phoneNumber: '',
     password: '',
     confirmPassword: '',
+    gender: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -47,9 +47,10 @@ const SignUpPage: React.FC = () => {
     }
   }, [formData]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,6 +58,7 @@ const SignUpPage: React.FC = () => {
     setPending(true);
     setErrors({});
 
+    // Validate form data using Zod schema
     const validationResult = signUpSchema.safeParse(formData);
     if (!validationResult.success) {
       const newErrors: { [key: string]: string } = {};
@@ -70,30 +72,33 @@ const SignUpPage: React.FC = () => {
       return;
     }
 
-    // try {
-    //   const response = await postApiRequest('/api/signup/', {
-    //     email: formData.email,
-    //     phone_number: formData.phoneNumber,
-    //     password: formData.password,
-    //   });
+    try {
+      const response = await fetch(
+        `process.env.NEXT_PUBLIC_API_URL/api/auth/signup`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    //   if (response.data) {
-    //     toast.success('Signup successful, please verify your email address');
-    //     setShowResend(true);
-    //     setCountdown(180);
-    //   } else {
-    //     const errorMessage = response.message || 'An unexpected error occurred';
-    //     setErrors({ general: errorMessage });
-    //     toast.error(errorMessage);
-    //     setPending(false);
-    //   }
-    // } catch (error: any) {
-    //   const errorMessage =
-    //     error instanceof Error ? error.message : 'An unexpected error occurred';
-    //   setErrors({ general: errorMessage });
-    //   toast.error(errorMessage);
-    //   setPending(false);
-    // }
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Signup failed. Please try again.');
+      }
+
+      toast.success('Account created successfully! Redirecting...');
+      router.push('/dashboard'); // Redirect after successful signup
+    } catch (error: unknown) {
+      console.error('Signup Error:', error);
+      setErrors({
+        general: error instanceof Error ? error.message : 'An error occurred',
+      });
+      toast.error(error instanceof Error ? error.message : 'An error occurred');
+    } finally {
+      setPending(false);
+    }
   };
 
   useEffect(() => {
@@ -106,30 +111,11 @@ const SignUpPage: React.FC = () => {
     }
   }, [countdown]);
 
-  // const handleResendActivationLink = async () => {
-  //   try {
-  //     await emailPasswordResetLink(formData.email);
-  //     setCountdown(180);
-  //     setShowResend(false);
-  //     setPending(true);
-  //     toast.success(
-  //       'Activation link resent successfully. Please check your email.'
-  //     );
-  //   } catch (error) {
-  //     const errorMessage =
-  //       error instanceof Error
-  //         ? error.message
-  //         : 'Failed to resend activation link';
-  //     setErrors({ general: errorMessage });
-  //     toast.error(errorMessage);
-  //   }
-  // };
-
   return (
     <main className="flex">
       {/* Left Section */}
       <div
-        className="hidden relative lg:flex flex-col pl-14 pr-20 my-6 ml-6 rounded-[32px] justify-center w-full h-[100vh] gap-8 backdrop-lg"
+        className="hidden relative lg:flex flex-col pl-14 pr-20 mx-6 mt-4 rounded-[32px] justify-center w-full h-[95vh] gap-8 backdrop-lg align-center"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(0,0,0,0), rgba(0,0,0,0.3)), url('/library2.jpg')",
@@ -210,31 +196,15 @@ const SignUpPage: React.FC = () => {
               <div className="border-b border-gray-300 flex items-center">
                 <Input
                   id="email"
+                  name="email"
                   placeholder="Please enter your email"
-                  className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500"
+                  className="bg-gray-100 rounded-[15px] px-6 py-5 border-0 font-semibold text-gray-500 w-full"
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  required
                 />
               </div>
-              {/* {errors.email && <p className="text-red-500">{errors.email}</p>} */}
-            </div>
-            {/* Phone Number */}
-            <div className="text-foreground">
-              <div className="border-b border-gray-300 flex items-center">
-                <Input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  placeholder="Please enter your phone number"
-                  className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500"
-                  type="tel"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                />
-              </div>
-              {/* {errors.phoneNumber && (
-                <p className="text-red-500">{errors.phoneNumber}</p>
-              )} */}
             </div>
 
             {/* Password */}
@@ -242,66 +212,75 @@ const SignUpPage: React.FC = () => {
               <div className="border-b border-gray-300 flex items-center relative">
                 <Input
                   id="password"
+                  name="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password"
-                  className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500"
+                  className="bg-gray-100 rounded-[15px] px-6 py-3 border-0 font-semibold text-gray-500 w-full"
                   value={formData.password}
                   onChange={handleInputChange}
+                  required
                 />
-                {showPassword ? (
-                  <Eye
-                    size={22}
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="cursor-pointer absolute z-20 right-4"
-                  />
-                ) : (
-                  <TbEyeClosed
-                    size={22}
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="cursor-pointer absolute z-20 right-4"
-                  />
-                )}
+                <span
+                  className="cursor-pointer absolute right-4"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <Eye size={22} /> : <TbEyeClosed size={22} />}
+                </span>
               </div>
-              {/* {errors.password && (
-                <p className="text-red-500">{errors.password}</p>
-              )} */}
             </div>
 
             {/* Confirm Password */}
-            <div className="text-foreground pb-8">
+            <div className="text-foreground">
               <div className="border-b border-gray-300 flex items-center relative">
                 <Input
                   id="confirmPassword"
+                  name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
                   placeholder="Confirm Password"
-                  className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500 relative"
+                  className="bg-gray-100 rounded-[15px] px-6 py-3 border-0 font-semibold text-gray-500 w-full"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
+                  required
                 />
-                {showConfirmPassword ? (
-                  <Eye
-                    size={22}
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="cursor-pointer absolute z-20 right-4"
-                  />
-                ) : (
-                  <TbEyeClosed
-                    size={22}
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="cursor-pointer absolute z-20 right-4"
-                  />
-                )}
+                <span
+                  className="cursor-pointer absolute right-4"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <Eye size={22} />
+                  ) : (
+                    <TbEyeClosed size={22} />
+                  )}
+                </span>
               </div>
-              {/* {errors.confirmPassword && (
-                <p className="text-red-500">{errors.confirmPassword}</p>
-              )} */}
             </div>
-            {/* {errors.general && <p className="text-red-500">{errors.general}</p>} */}
+
+            {/* Gender */}
+            <div className="text-foreground pb-8">
+              <div className="border-b border-gray-300 flex items-center">
+                <select
+                  id="gender"
+                  name="gender"
+                  className="bg-gray-100 rounded-[15px] px-6 py-3 border-0 font-semibold text-gray-500 w-full"
+                  value={formData.gender}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select Gender
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Submit Button */}
             <div className="relative">
               <Button
-                disabled={pending && countdown > 0} // Disable during countdown
-                // onClick={pending ? handleResendActivationLink : undefined} // Handle click based on the state
-                className="w-full bg-[#800080] hover:bg-[#bb48bb] text-[#ccc] py-8 rounded-[15px] dark:bg-emerald-500"
+                type="submit"
+                disabled={pending && countdown > 0}
+                className="w-full bg-[#800080] hover:bg-[#bb48bb] text-[#ccc] py-3 rounded-[15px] dark:bg-emerald-500"
               >
                 {pending && countdown > 0
                   ? `Resend Activation Link in ${Math.floor(countdown / 60)

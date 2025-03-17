@@ -2,181 +2,137 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-// import { postApiRequest } from '@/lib/apiRequest';
-// import { saveTokenToCookies } from '@/lib/cookies';
-import { Eye, EyeOff, Lock, Phone } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState, FormEvent } from 'react';
 import { TbEyeClosed } from 'react-icons/tb';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { FaArrowCircleLeft } from 'react-icons/fa';
-
-interface LoginFormErrors {
-  phone_number?: string;
-  password?: string;
-  general?: string;
-}
+import { saveTokenToCookies } from '@/lib/cookies';
 
 const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [phone_number, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<LoginFormErrors>({});
+  const [errors, setErrors] = useState<{ general?: string }>({});
   const router = useRouter();
-
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setErrors({});
 
-    // try {
-    //   const response = await postApiRequest('/api/login/', {
-    //     phone_number,
-    //     password,
-    //   });
+    try {
+      const response = await fetch(`https://api.coastdns.com/api/auth/signin`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-    //   const token = response?.User?.access_token;
-    //   if (token) {
-    //     saveTokenToCookies(token);
-    //     localStorage.setItem('isLoggedIn', 'true');
-    //     toast.success('Login Successful!');
-    //     router.push('/dashboard'); // Direct navigation to dashboard
-    //   } else {
-    //     throw new Error('Invalid login response structure');
-    //   }
-    // } catch (error: any) {
-    //   const errorMessage =
-    //     error.response?.data?.message || error.message || 'Login failed';
-    //   setErrors((prevErrors) => ({ ...prevErrors, general: errorMessage }));
-    //   toast.error(errorMessage);
-    // } finally {
-    //   setLoading(false);
-    // }
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed. Please try again.');
+      }
+
+      if (data.access_token) {
+        saveTokenToCookies('token', data.access_token);
+        toast.success('Logged in successfully!');
+        router.push('/dashboard');
+      } else {
+        throw new Error('Invalid login response: Missing access token');
+      }
+    } catch (error: unknown) {
+      console.error('Login Error:', error);
+      setErrors({
+        general: error instanceof Error ? error.message : 'An error occurred',
+      });
+      toast.error(error instanceof Error ? error.message : 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <main className="flex">
       {/* Login Form Section */}
-      <section className="w-full h-[100vh] flex items-center justify-center bg-background dark:bg-[#222222] overflow-hidden">
+      <section className="w-full h-[100vh] flex items-center justify-center overflow-hidden">
         <form
           onSubmit={handleLogin}
-          className="space-y-4 shadow-xl lg:shadow-none mx-auto min-w-[90vw] md:min-w-[35vw] p-10 rounded-md dark:bg-[#272727]"
-          aria-label="login-form"
+          className="space-y-4 mx-auto min-w-[90vw] md:min-w-[35vw] p-10 rounded-md"
         >
-          {/* Mobile Logo */}
-          <Link href="/" aria-label="homepage">
-            <div className="flex lg:hidden items-center justify-center p-4 rounded-md text-white font-bold text-2xl gap-2 bg-gradient-to-r from-orange-300 via-orange-400 to-red-600 dark:from-indigo-500 dark:via-sky-500 dark:to-emerald-500">
-              <Image
-                src="/assets/sharp_credit.webp"
-                alt="sharp credit brand logo"
-                height={50}
-                width={50}
-              />
-              <p>Sharp Credit</p>
-            </div>
-          </Link>
-
-          {/* Welcome Text */}
           <div className="space-y-2">
             <h1 className="text-3xl font-bold dark:text-foreground">
               Welcome back!
             </h1>
             <p className="text-gray-500 dark:text-gray-400 text-sm">
               Don{"'"}t have an account?{' '}
-              <span className="text-red-500 dark:text-emerald-500 font-bold underline">
-                <Link href="/register">Sign up</Link>
-              </span>
+              <Link
+                href="/register"
+                className="text-[#800080] dark:text-gray-300 font-bold underline"
+              >
+                Sign up
+              </Link>
             </p>
           </div>
 
-          {/* Phone Number Input */}
-          <div className="dark:text-foreground pt-7">
-            <div className="border-b border-gray-300 flex items-center gap-2">
-              <Phone size={22} color="#bbb" />
-              <Input
-                id="phone_number"
-                value={phone_number}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Phone number"
-                required
-                type="tel"
-                autoComplete="tel"
-                inputMode="tel"
-                aria-label="phone number"
-                className="border-b-0 border-gray-300 bg-transparent"
-              />
-            </div>
-            {errors.phone_number && (
-              <p className="text-red-500">{errors.phone_number}</p>
-            )}
-          </div>
+          {/* Email */}
+          <Input
+            id="email"
+            placeholder="Please enter your email"
+            className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
           {/* Password Input */}
-          <div className="dark:text-foreground">
-            <div className="border-b border-gray-300 flex items-center gap-2">
-              <Lock size={22} color="#bbb" />
-              <Input
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-                type={showPassword ? 'text' : 'password'}
-                autoComplete="current-password"
-                aria-label="password"
-                className="border-b-0 border-gray-300 bg-transparent"
+          <div className="relative">
+            <Input
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="current-password"
+              placeholder="Please enter your password"
+              className="bg-gray-100 rounded-[15px] px-6 py-8 border-0 font-semibold text-gray-500"
+            />
+            {showPassword ? (
+              <Eye
+                size={22}
+                onClick={() => setShowPassword(!showPassword)}
+                className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2"
               />
-              {showPassword ? (
-                <Eye
-                  size={22}
-                  onClick={togglePasswordVisibility}
-                  className="cursor-pointer"
-                  aria-label="hide password"
-                />
-              ) : (
-                <TbEyeClosed
-                  size={22}
-                  onClick={togglePasswordVisibility}
-                  className="cursor-pointer"
-                  aria-label="show password"
-                />
-              )}
-            </div>
-            {errors.password && (
-              <p className="text-red-500">{errors.password}</p>
+            ) : (
+              <TbEyeClosed
+                size={22}
+                onClick={() => setShowPassword(!showPassword)}
+                className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2"
+              />
             )}
           </div>
 
-          {/* General Error */}
           {errors.general && <p className="text-red-500">{errors.general}</p>}
 
           {/* Submit Button */}
           <Button
             type="submit"
             disabled={loading}
-            className="w-full primary-button dark:bg-emerald-500"
+            className="w-full bg-[#800080] hover:bg-[#bb48bb] text-[#ccc] py-8 rounded-[15px] dark:bg-emerald-500"
           >
-            {loading ? (
-              <span className="flex items-center">
-                Logging in{' '}
-                <span className="spin mx-2 w-4 h-4 border-2 border-t-2 border-white rounded-full"></span>
-              </span>
-            ) : (
-              'Login'
-            )}
+            {loading ? 'Logging in...' : 'Login'}
           </Button>
 
-          {/* Forgot Password Link */}
           <p className="text-sm dark:text-gray-400">
             Forgot password?{' '}
             <Link
               href="/forgot-password"
-              className="text-red-500 dark:text-emerald-500 font-bold underline"
+              className="text-[#800080] dark:text-gray-300 font-bold underline"
             >
               Recover password
             </Link>
@@ -186,7 +142,7 @@ const LoginPage: React.FC = () => {
 
       {/* Left Section */}
       <div
-        className="hidden relative lg:flex flex-col pl-14 pr-20 my-6 ml-6 rounded-[32px] justify-center w-full h-[100vh] gap-8 backdrop-lg"
+        className="hidden relative lg:flex flex-col pl-14 pr-20 mx-6 mt-4 rounded-[32px] justify-center w-full h-[95vh] gap-8 backdrop-lg align-center"
         style={{
           backgroundImage:
             "radial-gradient(circle, rgba(0,0,0,0), rgba(0,0,0,0.3)), url('/library2.jpg')",

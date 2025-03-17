@@ -8,6 +8,10 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         pathname: '/v0/b/coast-craft.appspot.com/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+      },
     ],
   },
 };

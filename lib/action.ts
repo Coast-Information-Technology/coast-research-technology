@@ -1,177 +1,113 @@
-import { getTokenFromCookies } from "./cookies";
+import { getTokenFromCookies } from './cookies';
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 interface ApiResponse<T> {
-  data: T;
-  message: string;
+  data: T | null;
+  message?: string;
 }
 
-// POST request
-export const postApiRequest = async <T>(
+const getHeaders = (isTokenRequired: boolean): HeadersInit => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (isTokenRequired) {
+    const token = getTokenFromCookies('Token');
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  return headers;
+};
+
+const apiRequest = async <T>(
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   endpoint: string,
-  isToken: boolean,
-  body: Record<string, unknown>
+  isTokenRequired = false,
+  body?: Record<string, unknown>
 ): Promise<ApiResponse<T>> => {
+  const url = `${BASE_URL}${endpoint}`;
+
+  const options: RequestInit = {
+    method,
+    headers: getHeaders(isTokenRequired),
+    body: body ? JSON.stringify(body) : undefined,
+  };
+
+  console.log(`🚀 [${method}] ${url}`, {
+    headers: options.headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  console.log('Final Request Options:', options);
+
   try {
-    const headers: HeadersInit = {
-      "Content-Type": "application/json",
-    };
+    console.log(`Fetching from: ${url}`);
 
-    // Add token to headers if provided
-    if (isToken) {
-      const token = getTokenFromCookies("Token");
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-      }
-    }
+    const response = await fetch(url, options);
+    const responseText = await response.text();
 
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: headers,
-      credentials: "include",
-      body: JSON.stringify(body),
-    });
+    console.log('Fetching after fetch from:', url);
+    console.log('response fetch from:', response);
+    console.log('responseTexT:', responseText);
 
-    if (response.ok) {
-      // Parse response data
-      const responseData = await response.json();
-      console.log("Post Request successful");
-      return responseData;
-    } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "Post Request failed");
-    }
-  } catch (error) {
-    console.error("Post Request failed", error);
-    throw error;
-  }
-};
-
-// GET request
-export const getApiRequest = async <T>(
-  endpoint: string,
-  token?: string
-): Promise<ApiResponse<T>> => {
-  try {
-    const headers: HeadersInit = {};
-
-    // Add token to headers if provided
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    const response = await fetch(endpoint, {
-      method: "GET",
-      headers: headers,
-      credentials: "include",
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("GET Request successful");
-      return responseData;
-    } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "GET Request failed");
-    }
-  } catch (error) {
-    console.error("GET Request failed", error);
-    throw error;
-  }
-};
-
-// PUT request
-export const putApiRequest = async <T>(
-  endpoint: string,
-  token: string | undefined,
-  body: Record<string, unknown>
-): Promise<ApiResponse<T>> => {
-  try {
-    const headers: HeadersInit = {
-      "Content-Type": "application/json",
-    };
-
-    // Add token to headers if provided
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    const response = await fetch(endpoint, {
-      method: "PUT",
-      headers: headers,
-      credentials: "include",
-      body: JSON.stringify(body),
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("PUT Request successful");
-      return responseData;
-    } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "PUT Request failed");
-    }
-  } catch (error) {
-    console.error("PUT Request failed", error);
-    throw error;
-  }
-};
-
-// DELETE request
-export const deleteApiRequest = async (
-  endpoint: string,
-  token?: string
-): Promise<void> => {
-  try {
-    const headers: HeadersInit = {};
-
-    // Add token to headers if provided
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    const response = await fetch(endpoint, {
-      method: "DELETE",
-      headers: headers,
-      credentials: "include",
-    });
-
-    if (response.ok) {
-      console.log("DELETE Request successful");
-    } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message || "DELETE Request failed");
-    }
-  } catch (error) {
-    console.error("DELETE Request failed", error);
-    throw error;
-  }
-};
-
-// Send activation link to the borrower to verify
-type SendActivationLinkResponse = boolean;
-
-export const sendActivationLink = async (
-  email: string
-): Promise<SendActivationLinkResponse> => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/verify_email/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
+    console.log(
+      `📡 Response [${response.status}]:`,
+      responseText || '(Empty Response)'
     );
 
     if (!response.ok) {
-      throw new Error("Failed to send activation link");
+      const errorMessage = responseText
+        ? JSON.parse(responseText).message || response.statusText
+        : response.statusText;
+      throw new Error(
+        `❌ ${method} Request Failed: ${response.status} - ${errorMessage}`
+      );
     }
 
-    return true; // Indicate success
+    return responseText
+      ? (JSON.parse(responseText) as ApiResponse<T>)
+      : { data: null };
   } catch (error) {
-    console.error("Error sending activation link:", error);
-    throw new Error("Failed to send activation link");
+    console.error(`🔥 Error in ${method} Request:`, error);
+    throw error;
+  }
+};
+
+// ✅ API Functions (Typed)
+export const postApiRequest = <T>(
+  endpoint: string,
+  isTokenRequired: boolean,
+  body: Record<string, unknown>
+) => apiRequest<T>('POST', endpoint, isTokenRequired, body);
+
+export const putApiRequest = <T>(
+  endpoint: string,
+  isTokenRequired: boolean,
+  body: Record<string, unknown>
+) => apiRequest<T>('PUT', endpoint, isTokenRequired, body);
+
+export const deleteApiRequest = (endpoint: string, isTokenRequired = false) =>
+  apiRequest<void>('DELETE', endpoint, isTokenRequired);
+
+export const getAllApiRequest = <T>(
+  endpoint: string,
+  isTokenRequired = false
+) => apiRequest<T>('GET', endpoint, isTokenRequired);
+
+export const getSingleApiRequest = <T>(
+  endpoint: string,
+  id: string | number,
+  isTokenRequired = false
+) => apiRequest<T>('GET', `${endpoint}/${id}`, isTokenRequired);
+
+// ✅ Example Function: Send Activation Link
+export const sendActivationLink = async (email: string): Promise<boolean> => {
+  try {
+    await postApiRequest('/api/verify_email/', false, { email });
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to send activation link:', error);
+    return false;
   }
 };
