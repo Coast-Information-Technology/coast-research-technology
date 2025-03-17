@@ -21,13 +21,15 @@ const LoginPage: React.FC = () => {
   const [errors, setErrors] = useState<{ general?: string }>({});
   const router = useRouter();
 
+  const url = process.env.NEXT_PUBLIC_API_URL;
+
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setErrors({});
 
     try {
-      const response = await fetch(`https://api.coastdns.com/api/auth/signin`, {
+      const response = await fetch(`${url}/api/auth/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

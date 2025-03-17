@@ -83,7 +83,7 @@ export const postApiRequest = async <T>(
   headers: Record<string, string> = {}
 ): Promise<T> => {
   try {
-    const response = await fetch(`https://api.coastdns.com${endpoint}`, {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

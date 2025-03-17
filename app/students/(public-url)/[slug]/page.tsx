@@ -24,6 +24,9 @@ import {
 import { motion } from 'framer-motion';
 import { MdRadioButtonChecked } from 'react-icons/md';
 import { FaGraduationCap, FaChalkboardTeacher } from 'react-icons/fa';
+// import { IoIdCard } from 'react-icons/io5';
+import { FaBook, FaTools, FaProjectDiagram } from 'react-icons/fa';
+import { useState } from 'react';
 
 // Define status icons
 const statusIcons = {
@@ -52,6 +55,13 @@ const skillIcons = {
 const ProfilePage = () => {
   const searchParams = useSearchParams();
   const slug = searchParams.get('slug');
+  const [activeTab, setActiveTab] = useState('Courses');
+
+  const tabs = [
+    { name: 'Courses', icon: <FaBook /> },
+    { name: 'Skills & Expertise', icon: <FaTools /> },
+    { name: 'Projects', icon: <FaProjectDiagram /> },
+  ];
 
   // Example mock data (Replace with API call based on slug)
   const profile = {
@@ -99,10 +109,10 @@ const ProfilePage = () => {
     <section className="max-w-6xl mx-auto p-8 space-y-4 min-h-screen mt-[7rem]">
       {/* Hero Section */}
       <motion.div
-        className="relative bg-gradient-to-r from-[#800080] to-[#df80ff] rounded-lg p-8 text-center shadow-lg"
+        className="relative bg-purple-600/50 backdrop-blur-lg rounded-lg p-8 text-center shadow-lg"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeIn' }}
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
       >
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
           <Image
@@ -118,110 +128,147 @@ const ProfilePage = () => {
         </h2>
         <p className="text-white/80 font-medium flex items-center gap-2 justify-center">
           {profile.role}{' '}
-          {statusIcons[profile.status as keyof typeof statusIcons]}{' '}
+          {statusIcons[profile.status as keyof typeof statusIcons]}
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
-        {/* Verification & Status */}
-        <motion.div
-          className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: 'easeIn' }}
-        >
-          <h2 className="text-lg font-semibold text-gray-700">
-            Verification & Status
-          </h2>
-          <p>
-            <strong>ID:</strong> {profile.id}
-          </p>
-          <p className="flex items-center gap-2 mt-2">
-            <strong>Status:</strong>{' '}
-            {statusIcons[profile.status as keyof typeof statusIcons]}{' '}
-            {profile.status}
-          </p>
-        </motion.div>
+      <motion.div
+        className="bg-white/10 backdrop-blur-lg border border-white/30 shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
+      >
+        {/* <h2 className="text-lg font-semibold text-gray-700 mb-4">
+          Profile Overview
+        </h2> */}
 
-        {/* Achievements */}
-        <motion.div
-          className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: 'easeIn' }}
-        >
-          <h2 className="text-lg font-semibold text-gray-700">Achievements</h2>
-          <ul className="list-disc ml-5 text-gray-600">
-            {profile.achievements.map((achievement, index) => (
-              <li key={index}>{achievement}</li>
-            ))}
-          </ul>
-        </motion.div>
-      </div>
+        {/* Flex container for two sections */}
+        <div className="flex flex-col md:flex-row">
+          {/* Left Section: Verification & Status */}
+          <motion.div
+            className="flex-1 md:pr-6 transition-transform duration-300 hover:scale-[1.02]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+          >
+            <h3 className="text-md font-semibold text-gray-600">
+              Verification & Status
+            </h3>
+            <p>
+              <strong>ID:</strong> {profile.id}
+            </p>
+            <p className="flex items-center gap-2 mt-2">
+              <strong>Status:</strong>{' '}
+              {statusIcons[profile.status as keyof typeof statusIcons]}{' '}
+              {profile.status}
+            </p>
+          </motion.div>
+
+          {/* Vertical Divider (Hidden on Mobile) */}
+          <div className="hidden md:block w-[2px] bg-white/30"></div>
+
+          {/* Right Section: Achievements */}
+          <motion.div
+            className="flex-1 md:pl-6 transition-transform duration-300 hover:scale-[1.02]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+          >
+            <h3 className="text-md font-semibold text-gray-600">
+              Achievements
+            </h3>
+            <ul className="list-disc ml-5 text-gray-600">
+              {profile.achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </motion.div>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-        {/* Courses */}
-        <motion.div
-          className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeIn' }}
-        >
-          <h2 className="text-lg font-semibold text-gray-700">Courses</h2>
-          <ul className="list-disc ml-5 text-gray-600">
-            {profile.courses.map((course, index) => (
-              <li key={index}>{course}</li>
-            ))}
-          </ul>
-        </motion.div>
+      <motion.div
+        className="bg-white/20 backdrop-blur-md border border-white/30 shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }} // Smooth easing
+      >
+        {/* Tabs Navigation */}
+        <div className="flex justify-between border-b border-white/30">
+          {tabs.map((tab) => (
+            <button
+              key={tab.name}
+              className={`flex items-center gap-2 px-4 py-2 text-gray-700 font-semibold transition-colors duration-300 ${
+                activeTab === tab.name
+                  ? 'border-b-2 border-purple-600 text-purple-600'
+                  : 'text-gray-500 hover:text-purple-600'
+              }`}
+              onClick={() => setActiveTab(tab.name)}
+            >
+              {tab.icon} {tab.name}
+            </button>
+          ))}
+        </div>
 
-        {/* Skills & Expertise */}
+        {/* Tab Content */}
         <motion.div
-          className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
-          initial={{ opacity: 0, y: 50 }}
+          className="mt-4"
+          key={activeTab} // Ensures smooth animation on tab switch
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeIn' }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
         >
-          <h2 className="text-lg font-semibold text-gray-700">
-            Skills & Expertise
-          </h2>
-          <ul className="grid grid-cols-2 gap-4 mt-4">
-            {profile.skills.map((skill, index) => (
-              <li key={index} className="flex items-center gap-2">
-                {skillIcons[skill as keyof typeof skillIcons] || '🔹'} {skill}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {activeTab === 'Courses' && (
+            <div>
+              {/* <h3 className="text-md font-semibold text-gray-600">Courses</h3> */}
+              <ul className="list-disc ml-5 text-gray-600">
+                {profile.courses.map((course, index) => (
+                  <li key={index}>{course}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-        {/* Projects */}
-        <motion.div
-          className="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-2xl"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeIn' }}
-        >
-          <h2 className="text-lg font-semibold text-gray-700">Projects</h2>
-          <ul className="mt-2">
-            {profile.projects.map((project, index) => (
-              <li
-                key={index}
-                className="flex items-center gap-2 text-[#800080] hover:underline"
-              >
-                <FaGithub />
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {project.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {activeTab === 'Skills & Expertise' && (
+            <div>
+              {/* <h3 className="text-md font-semibold text-gray-600">
+                Skills & Expertise
+              </h3> */}
+              <ul className="grid grid-cols-2 gap-4 mt-2">
+                {profile.skills.map((skill, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    {skillIcons[skill as keyof typeof skillIcons] || '🔹'}{' '}
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {activeTab === 'Projects' && (
+            <div>
+              {/* <h3 className="text-md font-semibold text-gray-600">Projects</h3> */}
+              <ul className="mt-2">
+                {profile.projects.map((project, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center gap-2 text-[#800080] hover:underline"
+                  >
+                    <FaProjectDiagram />
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
