@@ -1,0 +1,52 @@
+# Sitemap URL (Update with your actual domain)
+Sitemap: https://www.coastresearchtechnology.com/sitemap.xml
+
+# Allow search engines to index public pages
+User-agent: *
+Allow: /
+Allow: /coast-craft/
+Allow: /coast-craft/*
+Allow: /jobs/
+Allow: /jobs/*
+Allow: /training/
+Allow: /training/*
+Allow: /public-profiles/
+Allow: /public-profiles/students/*
+Allow: /public-profiles/staffs/*
+Allow: /public-profiles/alumni/*
+
+# Disallow private and sensitive areas
+Disallow: /auth/
+Disallow: /auth/*
+Disallow: /dashboard/
+Disallow: /dashboard/*
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /services/
+Disallow: /services/*
+Disallow: /config/
+Disallow: /config/*
+Disallow: /middleware/
+Disallow: /middleware/*
+Disallow: /api-tools/
+Disallow: /api-tools/*
+Disallow: /private/
+
+# Block search engine crawlers from indexing API endpoints
+Disallow: /api/
+Disallow: /api/*
+Disallow: /server/
+Disallow: /server/*
+
+# Optional: Block certain bots that may harm performance
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Allow all other bots to crawl the site normally
+User-agent: *

@@ -1,0 +1,300 @@
+/crt-website  (🔹 Root Project - Main Next.js Application)
+│── /app  (🔹 Main Website Pages - Publicly Accessible)
+│   │── layout.tsx  # 🔹 Global layout (header, footer, themes)
+│   │── page.tsx  # 🔹 Homepage (www.coastresearchtechnology.com)
+│   │── about/page.tsx  # 🔹 About Us Page
+│   │── contact/page.tsx  # 🔹 Contact Page
+│   │── services/page.tsx  # 🔹 Services Page
+│
+│
+│   ├── coast-craft/  (🔹 Blog - Publicly Accessible, But Requires Login to Comments, Likes, Track saved, commented and liked posts )
+│   │   │── page.tsx  # 🔹 Blog Homepage (www.coastresearchtechnology.com/coast-craft)
+│   │   │── [slug]/page.tsx  # 🔹 Single Blog Post Page (www.coastresearchtechnology.com/coast-craft/[slug])
+│   │   │── profile/page.tsx  # 🔹 Blog User Profile (Tracked Likes, Comments)
+│   │   │── auth-modal.tsx  # 🔹 Popup Login for Blog Viewers (No Separate Page)
+│   │   │── bookmarks/page.tsx  # 🔹 View Saved Posts
+│   │   │── authors/[firstName-LastName]/page.tsx  # 🔹 Author Profile (View, Follow & Like Author's profile)
+│
+│
+│   ├── jobs/  (🔹 Job Listings - Publicly Accessible, But Requires Login to Apply)
+│   │   │── page.tsx  # 🔹 Job Listings Page (www.coastresearchtechnology.com/jobs)
+│   │   │── [slug]/page.tsx  # 🔹 Single Job Page (www.coastresearchtechnology.com/jobs/[slug])
+│
+│   ├── training/  (🔹 Training - Publicly Accessible)
+│   │   │── page.tsx  # 🔹 Training Overview (www.coastresearchtechnology.com/training)
+│   │   │── [slug]/page.tsx  # 🔹 Single Training Program Page (www.coastresearchtechnology.com/training/[slug])
+│
+│
+│
+│   ├── public-profiles/  (🔹 Public Profiles - QR-Based URLs)
+│   │   │── students/[slug]/page.tsx  # 🔹 Public Student Profile
+│   │   │── staffs/[slug]/page.tsx  # 🔹 Public Staff Profile
+│   │   │── alumni/[slug]/page.tsx  # 🔹 Public Alumni Profile
+│
+│
+│── /auth/  (🔹 Authentication for Dashboard Users - Students, Instructors, Recruiters, Employees, Authors)
+│   │── login/page.tsx  # 🔹 Login Page for Dashboard Users
+│   │── register/page.tsx  # 🔹 Registration Page for Dashboard Users
+│   │── forgot-password/page.tsx  # 🔹 Password Recovery Page for Dashboard Users
+│   │── verify-email/page.tsx  # 🔹 Email Verification Page for Dashboard Users
+│   │── reset-password/page.tsx  # 🔹 Reset Password Page (Where they fill up their old and new password)
+│
+│
+│   ├── jobs/  (🔹 Dedicated Authentication for Job Applicants)
+│   │   │── login/page.tsx  # 🔹 Login Page for Job Applicants
+│   │   │── register/page.tsx  # 🔹 Signup Page for Job Applicants
+│   │   │── forgot-password/page.tsx  # 🔹 Password Recovery for Job Applicants
+│   │   │── verify-email/page.tsx  # 🔹 Email Verification for Job Applicants
+│   │   │── reset-password/page.tsx  # 🔹 Reset Password Page for Job Applicants (Where they fill up their old and new password)
+│
+│
+│── /dashboard/  (🔹 Role-Based User Dashboard - Requires Authentication)
+│   │── layout.tsx  # 🔹 Dashboard Layout (Sidebar, Navbar)
+│   │── page.tsx  # 🔹 Dashboard Homepage (User Overview)
+│   │── profile/page.tsx  # 🔹 User Profile Page (Supports Multi-Role Users)
+│   │── profile/edit/page.tsx  # 🔹 User Edits their profile page (Supports Multi-Role Users)
+│
+│   
+│
+│   #Students only
+│   │── students/
+│   │   ├── my-courses/page.tsx   # 🔹 Students view all their courses (Active, Completed, Pending)
+│   │   ├── my-course/[id]/page.tsx   # 🔹 Students can view a single course (Active, Completed, Pending)
+│   │   ├── my-projects/page.tsx   # 🔹 Students view all their projects (Active, Completed, Pending)
+│   │   ├── my-project/[id]/page.tsx   # 🔹 Students can view a single project (Active, Completed, Pending)
+│   │   ├── my-project/edit/[id]/page.tsx   # 🔹 Students view all their courses (Started, Not Started, Late, Completed)
+│   │   ├── new/payment/page.tsx   # 🔹 Students initial payments 
+│   │   ├── payments/page.tsx  # 🔹 Students to be Track Payments & Installments
+│   │   ├── payment/[id]/page.tsx   # 🔹 Students can view a single payment and download payment 
+│   │   ├── materials/page.tsx  # 🔹 Students can View & Download Course Materials
+│
+│   
+│
+│   #Instrtuctor only
+│   │── instructors/
+│   │   ├── enrollments/page.tsx  # 🔹 Browse & Register for Programs
+│   │   ├── enrollments/[id]/page.tsx  # 🔹 View Enrollment Details
+│   │   ├── enrollments/edit/[id]/page.tsx  # 🔹 Edit an Enrollment Details
+│   │   ├── courses/page.tsx   # 🔹 Instructors view all the courses that they are training (Active, Completed, Pending)
+│   │   ├── course/[id]/page.tsx   # 🔹 Instructors can view a single course that they are training (Active, Completed, Pending) 
+│   │   ├── course/[student_id]/page.tsx   # 🔹 Instructors can view all the courses for a single student that they are training (Active, Completed, Pending)
+│   │   ├── course/[student_id]/[id]/page.tsx   # 🔹 Instructors can view a student single course that they are training (Active, Completed, Pending)
+│   │   ├── course/[student_id]/edit/[id]/page.tsx   # 🔹 Instructors can edit a student single course or their course progress that they are training (Active, Completed, Pending)
+│   │   ├── projects/page.tsx   # 🔹 Instructors view all the projects for all the projects for their students that they are in charge of (Active, Completed, Pending)
+│   │   ├── projects/[student_id]/page.tsx   # 🔹 Instructors view all projects for a single student projects that they are in charge of (Active, Completed, Pending)
+│   │   ├── project/[id]/page.tsx   # 🔹 Instructors can view a single project that they are in charge of (Active, Completed, Pending)
+│   │   ├── project/edit/[id]/page.tsx   # 🔹 Instructors edits a single project that they are in charge of (Started, Not Started, Late, Under Review, Completed)
+│   │   ├── project/[student_id]/edit/[id]/page.tsx   # 🔹 Instructors edits a single project of a single student that they are in charge of (Started, Not Started, Late, Under Review, Completed)
+│   │   ├── materials/page.tsx  # 🔹 Instructors can View Course Materials that they are in charge
+│
+│   
+│
+│   #Applicant only
+│   │── applicants/
+│   │   ├── job-applications/page.tsx   # 🔹 Applicant can view all the jobs they applied for 
+│   │   ├── job-application/[id]/page.tsx   # 🔹 Applicant can view single job that they applied for
+│   │   ├── interviews/page.tsx   # 🔹 Applicant can view all interviews
+│   │   ├── interview/[id]/page.tsx   # 🔹 Applicant can view a single interview 
+│   │   ├── resume/upload/page.tsx   # 🔹 Applicant can upload their resume
+│   │   ├── resume/[id]/page.tsx   # 🔹 Applicant can view their resume
+│   │   ├── cover-letter/upload/page.tsx   # 🔹 Applicant can upload their cover letter
+│   │   ├── cover-letter/[id]/page.tsx   # 🔹 Applicant can view their cover letter
+│
+│   
+│
+│   #Recruiter only
+│   │── recruiters/
+│   │   ├── company-profile/new/page.tsx   # 🔹 Recruiters can create a company's profile
+│   │   ├── company-profiles/page.tsx   # 🔹 Recruiters can view all companys' profile
+│   │   ├── company-profile/[id]/page.tsx   # 🔹 Recruiters can view a single company's profile 
+│   │   ├── company-profile/edit/[id]/page.tsx   # 🔹 Recruiters can edit a single company's profile
+│   │   ├── applicants/page.tsx   # 🔹 Recruiters can view all applicants
+│   │   ├── applicant/[id]/page.tsx   # 🔹 Recruiters can view single applicant
+│   │   ├── job/new/page.tsx   # 🔹 Recruiters can create a job
+│   │   ├── jobs/page.tsx   # 🔹 Recruiters can view all jobs
+│   │   ├── job/[id]/page.tsx   # 🔹 Recruiters can view a single job 
+│   │   ├── job/edit/[id]/page.tsx   # 🔹 Recruiters can edit a single job
+│   │   ├── interview/new/[job-application_id]/page.tsx   # 🔹 Recruiters can schedule an interview using the job application ID
+│   │   ├── interviews/page.tsx   # 🔹 Recruiters can view all interviews
+│   │   ├── interview/[id]/page.tsx   # 🔹 Recruiters can view a single interview 
+│   │   ├── interview/edit/[id]/page.tsx   # 🔹 Recruiters can edit a single interview
+│   │   ├── job-applications/page.tsx   # 🔹 Recruiters can view all applications
+│   │   ├── job-application/[id]/page.tsx   # 🔹 Recruiters can view single applications
+│   
+│
+│   #Author only
+│   │── authors/
+│   │   ├── post/write/page.tsx   # 🔹 Authors can create a new post
+│   │   ├── posts/page.tsx   # 🔹 Authors can view all posts that they created
+│   │   ├── post/preview/[id]/page.tsx   # 🔹 Authors can view a post that they created
+│   │   ├── post/edit/[id]/page.tsx   # 🔹 Authors can edit a post that they created
+│   │   ├── newsletter/new/page.tsx   # 🔹 Authors can send newsletters to subscribers 
+│   
+│   
+│   
+│   ├── notifications/page.tsx  # 🔹 Notification Center (Job Offers, Course Updates, newsletter updates, feedback, course progress updates, interview schedule updates, payment updates)
+│   ├── api-tools/page.tsx  # 🔹 API Tools & Webhooks (For Developers)
+│
+│
+│
+│── /admin/  (🔹 Admin Panel - Full System Control)
+│   │── layout.tsx   # 🔹 Admin Panel Layout
+│   │── page.tsx   # 🔹 Admin Dashboard Homepage
+│
+│   ├── users/
+│   │   ├── page.tsx   # 🔹 Admin can view all users
+│   │   ├── new/page.tsx    # 🔹 Admin can create a new user
+│   │   ├── [id]/page.tsx    # 🔹 Admin can view single user
+│   │   ├── edit/[id]/page.tsx    # 🔹 Admin can edit single user
+│   │   ├── roles/page.tsx  # 🔹 Assign & Manage User Roles
+│   │   ├── logs/page.tsx  # 🔹 User Activity Logs & Suspicious Activities
+│   │   ├── kyc/page.tsx  # 🔹 KYC Verification (Profile & ID Checks)
+│
+│
+│
+│   ├── project-types/
+│   │   ├── page.tsx  # 🔹 Admin can view all project types
+│   │   ├── [id]/page.tsx  # 🔹 Admin can view single project type
+│   │   ├── edit/[id]/page.tsx  # 🔹 Admin can edit single project type
+│
+│
+│   ├── payments/
+│   │   ├── page.tsx   # 🔹 Admin can view all Payments & Installments
+│   │   ├── [id]/page.tsx    # 🔹 Admin can view a single payment
+│
+│
+│   ├── courses/
+│   │   ├── courses/new/page.tsx    # 🔹 Admin can create courses
+│
+│
+│   ├── project/
+│   │   ├── programs/new/page.tsx    # 🔹 Admin can create programs
+│
+│
+│   │   ├── materials/new/page.tsx   # 🔹 Admin can upload Course Materials
+│   │   ├── materials/page.tsx   # 🔹 Admin can View and download Course Materials
+│   │   ├── materials/[id]/page.tsx   # 🔹 Admin can can edit and delete Course Materials
+│
+│
+│   ├── coast-craft/
+│   │   ├── page.tsx    # 🔹 Admin can view all authors
+│   │   ├── [id]/page.tsx    # 🔹 Admin can view single author
+│   │   ├── post/write/page.tsx    # 🔹 Admin can create a new post
+│   │   ├── posts/page.tsx    # 🔹 Admin can view all posts that they created
+│   │   ├── post/preview/[id]/page.tsx    # 🔹 Admin can view a post that they created
+│   │   ├── post/edit/[id]/page.tsx    # 🔹 Admin can edit a post that they created
+│   │   ├── newsletter/new/page.tsx    # 🔹 Admin can send newsletters to subscribers 
+│   │   ├── newsletters/page.tsx    # 🔹 Admin can view all sent newsletters sent to subscribers
+│   │   ├── newsletter/[id]/page.tsx    # 🔹 Admin can view single newsletter sent to batch of subscribers
+│   │   ├── newsletters/page.tsx    # 🔹 Admin can view all sent newsletters sent to subscribers
+│   │   ├── newsletter/[id]/page.tsx    # 🔹 Admin can view single newsletter sent to batch of subscribers
+│   │   ├── subscribers/page.tsx    # 🔹 Admin can view all sent subscribers
+│   │   ├── subscriber/[id]/page.tsx    # 🔹 Admin can view single subscriber
+│   │   ├── reports/page.tsx  # 🔹 Flagged & Reported Blog Content
+│   │   ├── analytics/page.tsx  # 🔹 User Engagement Metrics
+│   │   ├── policies/page.tsx  # 🔹 Community Guidelines & Rules
+│
+│
+│   │── recruiters/
+│   │   ├── new/page.tsx    # 🔹 Admin can create a new recruiter
+│   │   ├── page.tsx    # 🔹 Admin can view all recruiters
+│   │   ├── [id]/page.tsx    # 🔹 Admin can view a single recruiter
+│   │   ├── edit/[id]/page.tsx    # 🔹 Admin can edit a single recruiter
+│   │   ├── applicants/page.tsx   # Recruiters can view all applicants
+│   │   ├── applicant/[id]/page.tsx   # Recruiters can view single applicant
+│   │   ├── company-profile/new/page.tsx    # 🔹 Admin can create a company's profile
+│   │   ├── company-profiles/page.tsx    # 🔹 Admin can view all companys' profile
+│   │   ├── company-profile/[id]/page.tsx    # 🔹 Admin can view a single company's profile 
+│   │   ├── company-profile/edit/[id]/page.tsx    # 🔹 Admin can edit a single company's profile
+│   │   ├── job/new/page.tsx    # 🔹 Admin can create a job
+│   │   ├── jobs/page.tsx    # 🔹 Admin can view all jobs
+│   │   ├── job/[id]/page.tsx    # 🔹 Admin can view a single job 
+│   │   ├── job/edit/[id]/page.tsx    # 🔹 Admin can edit a single job
+│   │   ├── interview/new/[job-application_id]/page.tsx    # 🔹 Admin can schedule an interview using the job application ID
+│   │   ├── interviews/page.tsx    # 🔹 Admin can view all interviews
+│   │   ├── interview/[id]/page.tsx    # 🔹 Admin can view a single interview 
+│   │   ├── interview/edit/[id]/page.tsx    # 🔹 Admin can edit a single interview
+│   │   ├── job-applications/page.tsx    # 🔹 Admin can view all applications
+│   │   ├── job-application/[id]/page.tsx    # 🔹 Admin can view single applications
+│
+│
+│   │── instructors/
+│   │   ├── page.tsx    # 🔹 Admin can view all instructors
+│   │   ├── [id]/page.tsx    # 🔹 Admin can view single Instrtuctor
+│   │   ├── enrollments/page.tsx  # 🔹 Browse & Register for Programs
+│   │   ├── enrollments/[id]/page.tsx  # 🔹 View Enrollment Details
+│   │   ├── enrollments/edit/[id]/page.tsx  # 🔹 Edit an Enrollment Details
+│   │   ├── courses/page.tsx    # 🔹 Admin view all the courses (Active, Completed, Pending)
+│   │   ├── course/[id]/page.tsx    # 🔹 Admin can view a single course (Active, Completed, Pending) 
+│   │   ├── course/[student_id]/page.tsx    # 🔹 Admin can view all the courses for a single student (Active, Completed, Pending)
+│   │   ├── course/[student_id]/[id]/page.tsx    # 🔹 Admin can view a student single course under a specific instructor (Active, Completed, Pending)
+│   │   ├── course/[student_id]/edit/[id]/page.tsx    # 🔹 Admin can edit a student single course or their course progress (Active, Completed, Pending)
+│   │   ├── projects/page.tsx    # 🔹 Admin can view all the projects (Active, Completed, Pending)
+│   │   ├── projects/[student_id]/page.tsx    # 🔹 Admin can view all projects for a single student under a specific instructor (Active, Completed, Pending)
+│   │   ├── project/[id]/page.tsx    # 🔹 Admin can view a single project (Active, Completed, Pending)
+│   │   ├── project/edit/[id]/page.tsx    # 🔹 Admin can edits a single project (Started, Not Started, Late, Under Review, Completed)
+│   │   ├── project/[student_id]/edit/[id]/page.tsx    # 🔹 Admin can edits a single project of a single student (Started, Not Started, Late, Under Review, Completed)
+│
+│
+│
+│── /components/  (🔹 Reusable UI Components)
+│   ├── auth/
+│   │   ├── AuthModal.tsx  # 🔹 Popup Login for Blog Viewers
+│   │   ├── LoginForm.tsx  # 🔹 Login Form Component
+│   │   ├── RegisterForm.tsx  # 🔹 Registration Form Component
+│   ├── ui/
+│   │   ├── Header.tsx  # 🔹 Navbar/Header Component
+│   │   ├── Footer.tsx  # 🔹 Footer Component
+│   │   ├── Button.tsx  # 🔹 Custom Button Component
+│   │   ├── Card.tsx  # 🔹 Reusable Card Component
+│
+│
+│── /context/  (🔹 Global State Management)
+│   │── AuthContext.tsx  # 🔹 Authentication & Role Management
+│   │── DashboardContext.tsx  # 🔹 Dashboard State
+│
+│
+│── /hooks/  (🔹 Custom React Hooks)
+│   │── useAuth.ts  # 🔹 Authentication Hooks
+│   │── useFetch.ts  # 🔹 Fetch API Data
+│
+│
+│── /services/  (🔹 API Calls - Organized by Feature)
+│   ├── auth/
+│   │   ├── login.ts
+│   │   ├── register.ts
+│   │   ├── forgotPassword.ts
+│   ├── training/
+│   │   ├── courses.ts
+│   │   ├── enrollment.ts
+│   ├── jobs/
+│   │   ├── jobs.ts
+│   │   ├── applications.ts
+│   │   ├── interviews.ts
+│   ├── notifications/
+│   │   ├── fetchNotifications.ts
+│   │   ├── markAsRead.ts
+│
+│
+│── /middleware/  (🔹 Security & Access Control)
+│   │── auth.ts  # 🔹 Authentication & Session Management
+│   │── rbac.ts  # 🔹 Role-Based Access Control
+│   │── rateLimit.ts  # 🔹 API Rate Limiting
+│   │── errorHandler.ts  # 🔹 Global Error Handling
+│
+│
+│── /config/  (🔹 Centralized Configs & Constants)
+│   │── app.ts  # 🔹 Global App Config
+│   │── roles.ts  # 🔹 Role Definitions (Admin, Instructor, etc.)
+│   │── api.ts  # 🔹 API Endpoints & Base URLs
+│   │── menus.ts  # 🔹 Role-Based Dashboard Menus
+│
+│
+│── /lib/  (🔹 Utility Functions)
+│   │── helpers.ts  # 🔹 General Helper Functions
+│
+│── /styles/  # 🔹 Tailwind CSS or Custom Styles
+│── /public/  # 🔹 Static Assets (Logos, Images)
+│── /next.config.js  # 🔹 Next.js Configuration
+│── /package.json  # 🔹 Project Dependencies
+│── /tsconfig.json  # 🔹 TypeScript Configuration
