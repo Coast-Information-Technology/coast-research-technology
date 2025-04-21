@@ -12,19 +12,14 @@ type CertificateProps = {
 
 const certificates = [
   {
-    slug: 'certificate-one',
-    name: 'Certificate One',
+    fullName: 'John Michael Doe',
+    slug: 'john-michael-doe',
     imageUrl: '/certificates/cert1.jpg',
   },
   {
-    slug: 'certificate-two',
-    name: 'Certificate Two',
+    fullName: 'Jane Alice Smith',
+    slug: 'jane-alice-smith',
     imageUrl: '/certificates/cert2.jpg',
-  },
-  {
-    slug: 'certificate-three',
-    name: 'Certificate Three',
-    imageUrl: '/certificates/cert3.jpg',
   },
 ];
 
@@ -33,7 +28,9 @@ export default function CertificatePage({ params }: CertificateProps) {
   const cert = certificates.find((c) => c.slug === params.slug);
 
   if (!cert) {
-    return <p className="p-6">Certificate not found.</p>;
+    return (
+      <div className="p-6 text-red-500 font-medium">Certificate not found.</div>
+    );
   }
 
   return (
@@ -47,12 +44,12 @@ export default function CertificatePage({ params }: CertificateProps) {
         </button>
         <Image
           src={cert.imageUrl}
-          alt={cert.name}
+          alt={cert.fullName}
           width={800}
           height={600}
           className="w-full h-auto rounded"
         />
-        <p className="mt-2 text-center font-semibold">{cert.name}</p>
+        <p className="mt-2 text-center font-semibold">{cert.fullName}</p>
       </div>
     </div>
   );

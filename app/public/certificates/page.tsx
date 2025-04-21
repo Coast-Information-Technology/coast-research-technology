@@ -5,19 +5,14 @@ import Image from 'next/image';
 
 const certificates = [
   {
-    slug: 'certificate-one',
-    name: 'Certificate One',
+    fullName: 'John Michael Doe',
+    slug: 'john-michael-doe',
     imageUrl: '/certificates/cert1.jpg',
   },
   {
-    slug: 'certificate-two',
-    name: 'Certificate Two',
+    fullName: 'Jane Alice Smith',
+    slug: 'jane-alice-smith',
     imageUrl: '/certificates/cert2.jpg',
-  },
-  {
-    slug: 'certificate-three',
-    name: 'Certificate Three',
-    imageUrl: '/certificates/cert3.jpg',
   },
 ];
 
@@ -28,16 +23,16 @@ export default function CertificatesPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {certificates.map((cert) => (
-          <Link key={cert.slug} href={`/public/certificates/${cert.slug}`}>
+          <Link key={cert.slug} href={`/certificates/${cert.slug}`}>
             <div className="cursor-pointer hover:opacity-80 transition">
               <Image
                 src={cert.imageUrl}
-                alt={cert.name}
+                alt={cert.fullName}
                 width={300}
                 height={200}
                 className="rounded shadow"
               />
-              <p className="mt-2 text-center">{cert.name}</p>
+              <p className="mt-2 text-center">{cert.fullName}</p>
             </div>
           </Link>
         ))}
