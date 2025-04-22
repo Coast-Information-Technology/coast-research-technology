@@ -20,12 +20,12 @@ import { disableNavWithFooter } from '@/utils/disableNavWithFooter';
 import { usePathname } from 'next/navigation';
 
 export const Footer = () => {
-  const path = usePathname();
+  const path = usePathname() || '';
 
-  const shouldHideHeader = disableNavWithFooter.some((path) => {
-    const pattern = path.replace(/\[.*\]/g, '[^/]+');
+  const shouldHideHeader = disableNavWithFooter.some((route) => {
+    const pattern = route.replace(/\[.*\]/g, '[^/]+');
     const regex = new RegExp(`^${pattern}$`);
-    return regex.test(path);
+    return regex.test(path); // <-- use actual current pathname
   });
 
   if (shouldHideHeader) return null;

@@ -23,9 +23,9 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
         <Image
           src="/coastresearch.svg"
           alt="Coast Research Technology Brand Logo"
-          width={160}
-          height={160}
-          className="p-2"
+          width={250}
+          height={250}
+          className=""
         />
       </div>
       <div className="mt-8 transition-none">
