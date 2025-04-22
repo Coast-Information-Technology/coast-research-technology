@@ -35,7 +35,7 @@ export default function CertificatePage({ params }: CertificateProps) {
   }
 
   return (
-    <div className="min-h-screen px-4 py-24 flex flex-col items-center justify-start">
+    <div className="min-h-screen px-4 pt-24 flex flex-col items-center justify-start">
       <div className="relative w-full max-w-4xl">
         <Image
           src={cert.imageUrl}
