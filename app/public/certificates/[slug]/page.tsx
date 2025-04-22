@@ -38,12 +38,6 @@ export default function CertificatePage({ params }: CertificateProps) {
   return (
     <div className="min-h-screen px-4 py-24 flex flex-col items-center justify-start bg-white">
       <div className="relative w-full max-w-4xl">
-        <button
-          className="absolute top-0 right-0 text-gray-600 hover:text-red-500"
-          onClick={() => router.back()}
-        >
-          <X size={24} />
-        </button>
         <Image
           src={cert.imageUrl}
           alt={cert.fullName}
