@@ -30,7 +30,9 @@ export default function CertificatePage({ params }: CertificateProps) {
 
   if (!cert) {
     return (
-      <div className="p-6 text-red-500 font-medium">Certificate not found.</div>
+      <div className="p-6 text-red-500 text-[1.5rem] font-medium">
+        Certificate not found.
+      </div>
     );
   }
 
