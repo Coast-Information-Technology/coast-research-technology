@@ -54,7 +54,7 @@ const skillIcons = {
 
 const ProfilePage = () => {
   const searchParams = useSearchParams();
-  const slug = searchParams.get('slug');
+  const slug = searchParams?.get('slug') ?? '';
   const [activeTab, setActiveTab] = useState('Courses');
 
   const tabs = [

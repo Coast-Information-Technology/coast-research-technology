@@ -22,11 +22,18 @@ import { usePathname } from 'next/navigation';
 export const Footer = () => {
   const path = usePathname();
 
+  const shouldHideHeader = disableNavWithFooter.some((path) => {
+    const pattern = path.replace(/\[.*\]/g, '[^/]+');
+    const regex = new RegExp(`^${pattern}$`);
+    return regex.test(path);
+  });
+
+  if (shouldHideHeader) return null;
+
   return (
     <>
-      {!disableNavWithFooter.includes(path) && (
-        <footer>
-          {/* <section className={`${styles.footer}`}>
+      <footer>
+        {/* <section className={`${styles.footer}`}>
       <div className="lg:px-20 lg:py-16 px-12 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-20 lg:gap-12 text-background">
           <div className={`${styles.footerGroup}`}>
@@ -192,50 +199,49 @@ export const Footer = () => {
         </svg>
       </button>
     </section>  */}
-          <div className="footer-content">
-            <ul className="footer-nav">
-              <li role="listitem">
-                <Link href="/">Home</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/about">About us</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/services">Services</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/career">Career</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/contact">Contact us</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/training">Training</Link>
-              </li>
-              <li role="listitem">
-                <Link href="/coast-craft">Coast Craft</Link>
-              </li>
-            </ul>
+        <div className="footer-content">
+          <ul className="footer-nav">
+            <li role="listitem">
+              <Link href="/">Home</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/about">About us</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/services">Services</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/career">Career</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/contact">Contact us</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/training">Training</Link>
+            </li>
+            <li role="listitem">
+              <Link href="/coast-craft">Coast Craft</Link>
+            </li>
+          </ul>
 
-            <div className="social-icons">
-              <Link href="https://www.facebook.com/coastechy">
-                <FacebookIcon />
-              </Link>
-              <Link href="https://twitter.com/coast_research">
-                <FaXTwitter />
-              </Link>
-              <Link href="https://www.instagram.com/coastechy">
-                <InstagramIcon />
-              </Link>
-              <Link href="#">
-                <LinkedinIcon />
-              </Link>
-            </div>
-
-            <p>&copy; 2024 All rights reserved</p>
+          <div className="social-icons">
+            <Link href="https://www.facebook.com/coastechy">
+              <FacebookIcon />
+            </Link>
+            <Link href="https://twitter.com/coast_research">
+              <FaXTwitter />
+            </Link>
+            <Link href="https://www.instagram.com/coastechy">
+              <InstagramIcon />
+            </Link>
+            <Link href="#">
+              <LinkedinIcon />
+            </Link>
           </div>
-        </footer>
-      )}
+
+          <p>&copy; 2024 All rights reserved</p>
+        </div>
+      </footer>
     </>
   );
 };

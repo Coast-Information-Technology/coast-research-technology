@@ -171,8 +171,8 @@ export interface IBlogPostPageProps {
 
 export interface DashboardLayoutProps {
   children?: React.ReactNode;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
 
 export interface ICourses {

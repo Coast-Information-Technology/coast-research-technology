@@ -82,7 +82,7 @@ const NavLink: React.FC<{ link: NavLinkData }> = ({ link }) => {
 
 export const Navbar: React.FC = () => {
   const [animationParent] = useAutoAnimate();
-  const path = usePathname();
+  const path = usePathname() || '';
   const [showMenu, setShowMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -116,60 +116,66 @@ export const Navbar: React.FC = () => {
     setIsDarkMode(currentTheme === 'dark'); // Update state based on the theme
   };
 
+  const shouldHideHeader = disableNavWithFooter.some((route) => {
+    const pattern = route.replace(/\[.*\]/g, '[^/]+');
+    const regex = new RegExp(`^${pattern}$`);
+    return regex.test(path); // <-- use actual current pathname
+  });
+
+  if (shouldHideHeader) return null;
+
   return (
     <>
-      {!disableNavWithFooter.includes(path) && (
-        <header className={`${showMenu ? 'active' : ''}`}>
-          <nav className="nav-bar">
-            {/* Menu hamburger */}
-            <button onClick={toggleMenu}>
-              <Menu className="fa-solid fa-bars-staggered sidebarOpen" />
-            </button>
-            {/* Coast Research Technology Logo */}
-            <Link href="/" className="logo">
-              <Image
-                src="/logoCoast.png"
-                alt="Coast Logo"
-                width={50}
-                height={50}
-              />
-              <span>COAST RESEARCH TECHNOLOGY</span>
-            </Link>
+      <header className={`${showMenu ? 'active' : ''}`}>
+        <nav className="nav-bar">
+          {/* Menu hamburger */}
+          <button onClick={toggleMenu}>
+            <Menu className="fa-solid fa-bars-staggered sidebarOpen" />
+          </button>
+          {/* Coast Research Technology Logo */}
+          <Link href="/" className="logo">
+            <Image
+              src="/logoCoast.png"
+              alt="Coast Logo"
+              width={50}
+              height={50}
+            />
+            <span>COAST RESEARCH TECHNOLOGY</span>
+          </Link>
 
-            <div className="menu">
-              <div className="menu-mobile-logo">
-                <Link href="#" className="logo">
-                  <Image
-                    src="/logoCoast.png"
-                    alt="Coast Logo"
-                    width={50}
-                    height={50}
-                  />
-                  <span>CRT</span>
-                </Link>
-                <button>
-                  <X
-                    className="fa-solid fa-circle-xmark siderbarClose"
-                    onClick={toggleMenu}
-                  />
-                </button>
-              </div>
-
-              <ul role="list" className="nav-links" onClick={toggleMenu}>
-                {renderedNavLinks}
-              </ul>
+          <div className="menu">
+            <div className="menu-mobile-logo">
+              <Link href="#" className="logo">
+                <Image
+                  src="/logoCoast.png"
+                  alt="Coast Logo"
+                  width={50}
+                  height={50}
+                />
+                <span>CRT</span>
+              </Link>
+              <button>
+                <X
+                  className="fa-solid fa-circle-xmark siderbarClose"
+                  onClick={toggleMenu}
+                />
+              </button>
             </div>
 
-            <button className="theme-toggle" onClick={toggleTheme}>
-              {isDarkMode ? (
-                <Sun className="fa-solid fa-sun sun" />
-              ) : (
-                <Moon className="fa-solid fa-moon moon text-gray-600" />
-              )}
-            </button>
-          </nav>
-        </header>
-      )}
+            <ul role="list" className="nav-links" onClick={toggleMenu}>
+              {renderedNavLinks}
+            </ul>
+          </div>
+
+          <button className="theme-toggle" onClick={toggleTheme}>
+            {isDarkMode ? (
+              <Sun className="fa-solid fa-sun sun" />
+            ) : (
+              <Moon className="fa-solid fa-moon moon text-gray-600" />
+            )}
+          </button>
+        </nav>
+      </header>
     </>
   );
 };
