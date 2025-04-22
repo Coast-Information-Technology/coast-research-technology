@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/pagination';
 import { cn } from '@/lib/utils';
 import DashboardLayout from '../../DashboardLayout';
+import Link from 'next/link';
 
 interface BlogPost {
   id: string;
@@ -166,13 +167,9 @@ const BlogPostsPage = () => {
                   {post.blogmeta.read_duration} min read
                 </p>
                 <Button asChild variant="outline" className="mt-4 w-full">
-                  <a
-                    href={post.blogmeta.post_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Link href={`/dashboard/coast-craft/posts/${post.id}`}>
                     Read More
-                  </a>
+                  </Link>
                 </Button>
               </CardContent>
             </Card>

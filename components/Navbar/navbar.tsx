@@ -25,10 +25,6 @@ const navLinks: NavLinkData[] = [
   {
     href: '/training',
     label: 'Training',
-    submenu: [
-      { href: '/training/courses', label: 'Courses' },
-      { href: 'javascript:void(0)', label: 'Admission' },
-    ],
   },
   {
     href: '',
