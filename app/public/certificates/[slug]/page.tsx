@@ -12,12 +12,14 @@ type CertificateProps = {
 
 const certificates = [
   {
-    fullName: 'John Michael Doe',
-    slug: 'john-michael-doe',
-    imageUrl: '/certificates/cert1.jpg',
+    fullName: 'Malik Kikiola Lamidi',
+    title: 'Microsoft Office Certificate in Modern Desktop Publishing',
+    slug: 'malik-kikiola-lamidi',
+    imageUrl: '/certificates/malik-kikiola-lamidi.jpeg',
   },
   {
     fullName: 'Jane Alice Smith',
+    title: 'Information Technology',
     slug: 'jane-alice-smith',
     imageUrl: '/certificates/cert2.jpg',
   },
@@ -34,10 +36,10 @@ export default function CertificatePage({ params }: CertificateProps) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-      <div className="relative bg-white p-4 rounded shadow-xl max-w-3xl w-full">
+    <div className="min-h-screen px-4 py-24 flex flex-col items-center justify-start bg-white">
+      <div className="relative w-full max-w-4xl">
         <button
-          className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+          className="absolute top-0 right-0 text-gray-600 hover:text-red-500"
           onClick={() => router.back()}
         >
           <X size={24} />
@@ -45,11 +47,11 @@ export default function CertificatePage({ params }: CertificateProps) {
         <Image
           src={cert.imageUrl}
           alt={cert.fullName}
-          width={800}
-          height={600}
-          className="w-full h-auto rounded"
+          width={1000}
+          height={700}
+          className="rounded shadow-xl w-full h-auto"
         />
-        <p className="mt-2 text-center font-semibold">{cert.fullName}</p>
+        <p className="pt-4 text-center text-[1.2rem] font-bold">{cert.title}</p>
       </div>
     </div>
   );
