@@ -73,7 +73,10 @@ const BlogPostPage = () => {
     return (
       <div className="text-center mt-10">
         <h2 className="text-xl font-bold">Blog Post Not Found</h2>
-        <Button variant="outline" onClick={() => router.push('/blog')}>
+        <Button
+          variant="outline"
+          onClick={() => router.push('/dashboard/coast-craft/posts')}
+        >
           Back to Blog
         </Button>
       </div>
@@ -81,8 +84,11 @@ const BlogPostPage = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <Button variant="outline" onClick={() => router.push('/blog')}>
+    <div className="w-full mx-auto px-4 md:px-16 pt-24">
+      <Button
+        variant="outline"
+        onClick={() => router.push('/dashboard/coast-craft/posts')}
+      >
         ← Back to Blog
       </Button>
 
@@ -105,14 +111,17 @@ const BlogPostPage = () => {
 
           {/* Render Blog Content */}
           <div className="mt-4 space-y-4">
-            {post.blockbody.blocks.map((block, index) => {
+            {post.blockbody?.blocks.map((block, index) => {
               if (block.type === 'header') {
+                const level = block.data.level || 2;
+                const Tag = `h${level}` as keyof JSX.IntrinsicElements;
                 return (
-                  <h2 key={index} className="text-xl font-bold">
+                  <Tag key={index} className="text-xl font-bold">
                     {block.data.text}
-                  </h2>
+                  </Tag>
                 );
               }
+
               if (block.type === 'paragraph') {
                 return (
                   <p key={index} className="text-gray-700">
@@ -120,16 +129,37 @@ const BlogPostPage = () => {
                   </p>
                 );
               }
+
               if (block.type === 'image') {
                 return (
                   <img
                     key={index}
-                    src={block.data.file.url}
-                    alt={block.data.caption}
+                    src={block.data.file?.url}
+                    alt={block.data.caption || 'Blog image'}
                     className="w-full rounded-lg"
                   />
                 );
               }
+
+              if (block.type === 'list') {
+                const isOrdered = block.data.style === 'ordered';
+                const ListTag = isOrdered ? 'ol' : 'ul';
+                return (
+                  <ListTag
+                    key={index}
+                    className={`ml-5 space-y-1 text-gray-700 ${
+                      isOrdered ? 'list-decimal' : 'list-disc'
+                    }`}
+                  >
+                    {block.data.items.map((item: any, i: number) => (
+                      <li key={i}>{item.content || item}</li>
+                    ))}
+                  </ListTag>
+                );
+              }
+
+              // You can keep extending here for code blocks, quotes, etc.
+
               return null;
             })}
           </div>
@@ -142,32 +172,31 @@ const BlogPostPage = () => {
           <h2 className="text-xl font-bold mb-4">
             More from {post.meta.author}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-col-2 md:grid-cols-4 gap-6">
             {relatedPosts.map((related) => (
-              <Card key={related.id} className="hover:shadow-lg transition">
-                <img
-                  src={related.blogmeta.post_image_url}
-                  alt={related.blogmeta.title}
-                  className="w-full h-40 object-cover rounded-t-lg"
-                />
-                <CardHeader>
-                  <CardTitle className="text-lg">
-                    {related.blogmeta.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-600">
-                    {related.meta.description}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    {new Date(related.blogmeta.time).toLocaleDateString()} •{' '}
-                    {related.blogmeta.read_duration} min read
-                  </p>
-                  <Button asChild variant="outline" className="mt-4 w-full">
-                    <Link href={`/blog/${related.id}`}>Read More</Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              <Link href={`/blog/${related.id}`}>
+                <Card key={related.id} className="hover:shadow-lg transition">
+                  <img
+                    src={related.blogmeta.post_image_url}
+                    alt={related.blogmeta.title}
+                    className="w-full h-30 object-cover rounded-t-lg"
+                  />
+                  <CardHeader>
+                    <CardTitle className="text-[14px]">
+                      {related.blogmeta.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[12px] -mt-2 text-gray-600 line-clamp-2">
+                      {related.meta.description}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2">
+                      {new Date(related.blogmeta.time).toLocaleDateString()} •{' '}
+                      {related.blogmeta.read_duration} min read
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

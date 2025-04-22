@@ -6,11 +6,19 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-export const Sidebar = () => {
+interface SidebarProps {
+  isOpen: boolean;
+}
+
+export const Sidebar = ({ isOpen }: SidebarProps) => {
   const pathname = usePathname(); // Get the current path
 
   return (
-    <aside className="w-[12rem] bg-gray-200 text-primary-text-color flex-shrink-0 h-[100vh]">
+    <aside
+      className={`${
+        isOpen ? 'block' : 'hidden'
+      } md:flex w-[12rem] bg-gray-200 text-primary-text-color flex-shrink-0 h-screen transform transition-transform duration-300 ease-in-out`}
+    >
       <div>
         <Image
           src="/coastresearch.svg"
