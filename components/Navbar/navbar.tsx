@@ -51,7 +51,7 @@ const NavLink: React.FC<{ link: NavLinkData }> = ({ link }) => {
       <div className="relative group">
         <Link
           href={link.href}
-          className="flex items-center gap-1 text-black hover:text-gray-700"
+          className="flex items-center gap-1 text-black dark:text-white hover:text-gray-700"
         >
           {link.label} <FaCaretDown className="ml-1" />
         </Link>
@@ -71,7 +71,10 @@ const NavLink: React.FC<{ link: NavLinkData }> = ({ link }) => {
   }
 
   return (
-    <Link href={link.href} className="text-black hover:text-gray-700">
+    <Link
+      href={link.href}
+      className="text-black dark:text-white hover:text-gray-700"
+    >
       {link.label}
     </Link>
   );

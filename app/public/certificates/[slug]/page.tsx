@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { X } from 'lucide-react';
 
 type CertificateProps = {
   params: {
@@ -36,7 +35,7 @@ export default function CertificatePage({ params }: CertificateProps) {
   }
 
   return (
-    <div className="min-h-screen px-4 py-24 flex flex-col items-center justify-start bg-white">
+    <div className="min-h-screen px-4 py-24 flex flex-col items-center justify-start">
       <div className="relative w-full max-w-4xl">
         <Image
           src={cert.imageUrl}
@@ -45,7 +44,9 @@ export default function CertificatePage({ params }: CertificateProps) {
           height={700}
           className="rounded shadow-xl w-full h-auto"
         />
-        <p className="pt-4 text-center text-[1.2rem] font-bold">{cert.title}</p>
+        <p className="pt-4 text-center text-[1.5rem] font-semibold dark:text-white">
+          {cert.title}
+        </p>
       </div>
     </div>
   );
