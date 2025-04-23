@@ -84,13 +84,24 @@ const BlogPostPage = () => {
   }
 
   return (
-    <div className="w-full mx-auto px-4 md:px-16 pt-24">
-      <Button
-        variant="outline"
-        onClick={() => router.push('/dashboard/coast-craft/posts')}
-      >
-        ← Back to Blog
-      </Button>
+    <div className="w-full mx-auto px-4 md:px-16 pt-12">
+      <div className="flex items-center justify-between">
+        <Button
+          variant="outline"
+          onClick={() => router.push('/dashboard/coast-craft/posts')}
+        >
+          ← Back to Blog
+        </Button>
+
+        <Button
+          variant="outline"
+          onClick={() =>
+            router.push(`/dashboard/coast-craft/posts/edit/${post.id}`)
+          }
+        >
+          Edit
+        </Button>
+      </div>
 
       <Card className="mt-6">
         <img
@@ -158,7 +169,32 @@ const BlogPostPage = () => {
                 );
               }
 
-              // You can keep extending here for code blocks, quotes, etc.
+              if (block.type === 'quote') {
+                return (
+                  <blockquote
+                    key={index}
+                    className="border-l-4 pl-4 italic text-gray-600 border-gray-400"
+                  >
+                    {block.data.text}
+                    {block.data.caption && (
+                      <footer className="text-xs text-gray-500 mt-1">
+                        — {block.data.caption}
+                      </footer>
+                    )}
+                  </blockquote>
+                );
+              }
+
+              if (block.type === 'code') {
+                return (
+                  <pre
+                    key={index}
+                    className="bg-gray-100 text-sm p-4 rounded-md overflow-x-auto font-mono text-gray-800"
+                  >
+                    <code>{block.data.code}</code>
+                  </pre>
+                );
+              }
 
               return null;
             })}

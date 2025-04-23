@@ -1,3 +1,12 @@
+export const matchPath = (path: string, patterns: string[]) => {
+  return patterns.some((pattern) => {
+    const dynamicPattern = pattern.replace(/\[.*?\]/g, '[^/]+'); // [id] → [^/]+
+    const escaped = dynamicPattern.replace(/\//g, '\\/').replace(/\./g, '\\.');
+    const regex = new RegExp(`^${escaped}$`);
+    return regex.test(path);
+  });
+};
+
 export const disableNavWithFooter = [
   '/not-found',
   '/dashboard',
@@ -15,4 +24,6 @@ export const disableNavWithFooter = [
   '/register',
   '/forgot-password',
   '/dashboard/coast-craft/posts',
+  '/dashboard/coast-craft/posts/edit',
+  '/dashboard/coast-craft/posts/preview',
 ];

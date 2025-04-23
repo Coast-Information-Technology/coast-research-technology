@@ -17,8 +17,6 @@ const inter = Inter({ subsets: ['latin'] });
 //   subsets: ["latin"],
 // });
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
