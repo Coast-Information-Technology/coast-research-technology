@@ -33,8 +33,8 @@ const OurMissionPage: React.FC = () => {
           <h1>OUR MISSION</h1>
           <p>
             Our mission at Coast Research Technology is to empower businesses
-            and individuals through innovative software solutions, expert
-            training, and strategic recruitment services. We are not just
+            and individuals through innovative software solutions and expert
+            training. We are not just
             developers; we are innovators who craft intelligent, bespoke
             solutions that anticipate future needs, solve complex challenges,
             and drive growth. By combining creative thinking, advanced
@@ -147,9 +147,8 @@ const OurMissionPage: React.FC = () => {
           At Coast Research Technology, we are driven by a commitment to
           innovation and excellence, constantly seeking creative and
           forward-looking solutions to address future needs and complex
-          challenges. We strive to deliver high-quality software development,
-          comprehensive training programs, and effective recruitment services
-          that empower businesses and individuals to thrive in an ever-evolving
+          challenges. We strive to deliver high-quality software development
+          and comprehensive training programs that empower businesses and individuals to thrive in an ever-evolving
           digital landscape.
         </p>
         <p className="justify-text">
@@ -158,7 +157,7 @@ const OurMissionPage: React.FC = () => {
           practical problem-solving. Our mission is to empower the next
           generation of tech professionals with the skills, confidence, and
           support needed to excel in their careers. By providing tailored
-          solutions and strategic recruitment, we help businesses and
+          solutions, we help businesses and
           individuals achieve their full potential, driving positive change and
           progress across the tech industry.
         </p>

@@ -10,15 +10,9 @@ Coast Research Technology specializes in:
 
 - **Software Development** 💻
 - **Tech Training & Internships** 🎓
-- **Recruitment & Talent Development** 👨‍💻
 - **Fintech Products** 💰 (e.g., **Coastlink24** & **LendAsset API**)
-- **Coast Craft Blog** ✍️ (Stay updated with tech trends!)
 
 ## 📌 Features
-
-### Coast Craft (Blog) 📝
-
-Our **Coast Craft** blog covers **latest trends, insights, and research** in fintech, software development, and emerging tech sectors.
 
 ### Tech Training & Internships 🎓
 

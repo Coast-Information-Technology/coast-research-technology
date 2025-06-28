@@ -29,18 +29,17 @@ const AboutSection = () => {
               <br />
             </p>
             <p className={`${styles.lead}`}>
-              We are more than just a software development, training, and
-              recruitment company—we are innovators committed to transforming
+              We are more than just a software development and training
+              company—we are innovators committed to transforming
               how businesses and individuals interact with technology. By
-              offering cutting-edge software solutions, expert training
-              programs, and unparalleled recruitment services, we harness the
-              power of technology to drive progress and ensure our clients and
+              offering cutting-edge software solutions and expert training
+              programs, we harness the power of technology to drive progress and ensure our clients and
               trainees stay ahead in an ever-evolving digital landscape.
             </p>
             <br />
             <p className={`${styles.lead}`}>
-              Our dedication to excellence in these three core areas underscores
-              our belief in technology’s potential to elevate lives and redefine
+              Our dedication to excellence in these core areas underscores
+              our belief in technology's potential to elevate lives and redefine
               industry standards.
             </p>
           </article>

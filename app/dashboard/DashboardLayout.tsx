@@ -7,8 +7,12 @@ import { Sidebar } from '@/components/Sidebar/Sidebar';
 
 export default function DashboardLayout({
   children,
+  title,
+  description,
 }: {
   children: React.ReactNode;
+  title?: string;
+  description?: string;
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -26,7 +30,11 @@ export default function DashboardLayout({
         }`}
       >
         <DashboardNavBar onToggleSidebar={toggleSidebar} />
-        <main className="flex-grow p-4 overflow-y-auto">{children}</main>
+        <main className="flex-grow p-4 overflow-y-auto">
+          {title && <h1 className="text-2xl font-bold mb-2">{title}</h1>}
+          {description && <p className="text-gray-600 mb-4">{description}</p>}
+          {children}
+        </main>
       </div>
     </div>
   );

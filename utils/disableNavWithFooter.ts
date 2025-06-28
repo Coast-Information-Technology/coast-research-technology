@@ -23,7 +23,4 @@ export const disableNavWithFooter = [
   '/login',
   '/register',
   '/forgot-password',
-  '/dashboard/coast-craft/posts',
-  '/dashboard/coast-craft/posts/edit',
-  '/dashboard/coast-craft/posts/preview',
 ];

@@ -4,8 +4,6 @@ Sitemap: https://www.coastresearchtechnology.com/sitemap.xml
 # Allow search engines to index public pages
 User-agent: *
 Allow: /
-Allow: /coast-craft/
-Allow: /coast-craft/*
 Allow: /jobs/
 Allow: /jobs/*
 Allow: /training/

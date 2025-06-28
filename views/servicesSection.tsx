@@ -88,34 +88,34 @@ const ServicesSection = () => {
             <div className={`${styles.card}`}>
               <div className={`${styles.cardHeader}`}>
                 <h3 className={`${styles.cardHeading}`}>
-                  Exceptional Talent Recruitment
+                  Custom Software Development
                 </h3>
               </div>
               <div className={`${styles.cardBody}`}>
                 <ul role="list" style={{ listStyleType: 'circle' }}>
                   <li>
-                    Finding the perfect match between talent and opportunity is
-                    critical to your organization&apos;s success.
+                    We specialize in creating bespoke software solutions that
+                    perfectly align with your business objectives and requirements.
                   </li>
                   <li>
-                    At Coast Research Technology, our recruitment services are
-                    in a league of their own.
+                    Our development team leverages cutting-edge technologies and
+                    industry best practices to deliver robust, scalable, and
+                    user-friendly applications.
                   </li>
                   <li>
-                    We go beyond conventional approaches to deliver a meticulous
-                    and high-quality service designed for those who demand
-                    nothing but excellence and innovation.
+                    From web applications to mobile apps and enterprise software,
+                    we ensure every solution is tailored to meet your specific
+                    needs and exceed your expectations.
                   </li>
                   <li>
-                    Our approach is aligned with the unique needs of both
-                    candidates and companies, ensuring precise matching of
-                    exceptional talent with visionary roles.
+                    We follow agile methodologies to ensure transparent
+                    communication, rapid development cycles, and continuous
+                    improvement throughout the project lifecycle.
                   </li>
                   <li>
-                    Whether you&apos;re seeking top-tier professionals to drive
-                    your business forward or looking for your next career move,
-                    our expert recruitment services provide unparalleled
-                    precision and insight to meet your needs.
+                    Our commitment to quality extends beyond development to
+                    include comprehensive testing, deployment, and ongoing
+                    support to ensure your software performs optimally.
                   </li>
                 </ul>
               </div>
@@ -123,32 +123,35 @@ const ServicesSection = () => {
                 Read More
               </Link>
             </div>
+
             <div className={`${styles.card}`}>
               <div className={`${styles.cardHeader}`}>
                 <h3 className={`${styles.cardHeading}`}>
-                  Strategic Consulting Services
+                  Expert Training Programs
                 </h3>
               </div>
               <div className={`${styles.cardBody}`}>
                 <ul role="list" style={{ listStyleType: 'circle' }}>
                   <li>
-                    At Coast Research Technology, our consulting services are
-                    designed to help you navigate the complexities of technology
-                    and achieve strategic goals.
+                    Comprehensive training programs designed to equip individuals with
+                    industry-leading skills in software development, cybersecurity,
+                    and emerging technologies.
                   </li>
                   <li>
-                    We offer expert guidance in enterprise engineering, system
-                    design, and technology integration to streamline your
-                    operations and drive innovation.
+                    Our hands-on approach ensures practical experience with real-world
+                    projects, preparing you for immediate industry integration.
                   </li>
                   <li>
-                    Our consultants work closely with you to understand your
-                    unique challenges and develop tailored solutions that
-                    enhance efficiency, boost productivity, and support your
-                    long-term vision. From automating business processes to
-                    optimizing customer experiences, our strategic consulting is
-                    committed to delivering actionable insights and impactful
-                    results.
+                    Expert instructors with years of industry experience guide you
+                    through the latest technologies and best practices.
+                  </li>
+                  <li>
+                    Flexible learning schedules and personalized mentorship to support
+                    your learning journey and career goals.
+                  </li>
+                  <li>
+                    Continuous curriculum updates to keep pace with rapidly evolving
+                    technology trends and industry demands.
                   </li>
                 </ul>
               </div>

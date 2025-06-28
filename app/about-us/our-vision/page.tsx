@@ -25,8 +25,7 @@ const OurVisionPage: React.FC = () => {
           <p>
             At Coast Research Technology, our vision is to be the leading
             catalyst for transformative change in the technology landscape. We
-            aspire to shape the future of software development, training, and
-            recruitment by pioneering innovative solutions and fostering a
+            aspire to shape the future of software development and training by pioneering innovative solutions and fostering a
             culture of excellence. Our goal is to inspire and drive progress by
             creating technologies and opportunities that not only meet but
             exceed the evolving needs of businesses and individuals. We envision
@@ -134,12 +133,10 @@ const OurVisionPage: React.FC = () => {
           At Coast Research Technology, we are driven by a commitment to
           innovation and excellence, constantly seeking creative and
           forward-looking solutions to address future needs and complex
-          challenges. We strive to deliver high-quality software development,
-          comprehensive training programs, and effective recruitment services
-          that empower businesses and individuals to thrive in an ever-evolving
+          challenges. We strive to deliver high-quality software development
+          and comprehensive training programs that empower businesses and individuals to thrive in an ever-evolving
           digital landscape. Through our emphasis on precision, we ensure a
-          meticulous and accurate approach to matching talent with
-          opportunities, tailored to meet unique needs and drive success.
+          meticulous and accurate approach to delivering solutions tailored to meet unique needs and drive success.
         </p>
         <p className="justify-text">
           We believe in fostering growth and transformation by nurturing talent
@@ -147,7 +144,7 @@ const OurVisionPage: React.FC = () => {
           practical problem-solving. Our mission is to empower the next
           generation of tech professionals with the skills, confidence, and
           support needed to excel in their careers. By providing tailored
-          solutions and strategic recruitment, we help businesses and
+          solutions, we help businesses and
           individuals achieve their full potential, driving positive change and
           progress across the tech industry.
         </p>

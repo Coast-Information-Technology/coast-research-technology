@@ -62,26 +62,6 @@ export const slides: ISlide[] = [
     linkText: 'Explore our courses.',
     url: '/trainings',
   },
-  {
-    id: '5',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/coast-craft.appspot.com/o/recruit.webp?alt=media&token=91a74347-703e-4040-bb48-18255b050cf0',
-    heading: 'Recruitment Services for Top Tech Talent',
-    text: 'Find the right candidates to drive your business forward.',
-    tip: 'Hire the Best',
-    linkText: 'Start your search now.',
-    url: '/career',
-  },
-  {
-    id: '6',
-    image:
-      'https://firebasestorage.googleapis.com/v0/b/coast-craft.appspot.com/o/tutorial.webp?alt=media&token=029195b3-2fe2-4db6-87da-db7ce89138f9',
-    heading: 'Coast Craft – Insights and Innovation',
-    text: 'Your hub for tech news, tips, and trends.',
-    tip: 'Read the Latest',
-    linkText: 'Visit our blog.',
-    url: '/coast-craft',
-  },
 ];
 
 export const testimonial: ITestimonialData[] = [
@@ -457,24 +437,18 @@ export const sidebar: ISideBar[] = [
   },
   {
     id: 8,
-    title: 'Posts',
-    path: '/dashboard/coast-craft/posts',
-    icon: Upload,
-  },
-  {
-    id: 9,
     title: 'Bookmarks',
     path: '/dashboard/bookmarks',
     icon: Bookmark,
   },
   {
-    id: 10,
+    id: 9,
     title: 'Newsletters',
     path: '/dashboard/newsletters',
     icon: Newspaper,
   },
   {
-    id: 11,
+    id: 10,
     title: 'Settings',
     path: '/dashboard/settings',
     icon: Settings,
