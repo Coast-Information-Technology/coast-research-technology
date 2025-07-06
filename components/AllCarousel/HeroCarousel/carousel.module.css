@@ -1,8 +1,10 @@
 /* Carousel.module.css */
 
 .carouselContainer {
-  position: relative;
+  max-width: 1200px; /* Adjust to match navbar width */
+  margin: 0 auto;
   width: 100%;
+  position: relative;
 }
 
 .slide {
@@ -36,7 +38,7 @@
 .slideText {
   color: var(--primary-text-color);
   font-size: var(--fs-nm);
-  text-align: justify;
+  /* text-align: ; */
 }
 
 .tip {
@@ -45,19 +47,23 @@
   font-weight: bold;
   /*  margin-block-start: 0.5rem;*/
   padding-block: 0.5rem;
-  text-align: left;
-  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-block-start: 1rem;
+  text-align: center;
 }
 
 .tip a {
   /*  color: #000;*/
   font-weight: 400;
-  border-inline-start: 1px solid var(--primary-text-color);
-  padding-inline: 0.5rem;
+  border-radius: 9999px;
 }
 
 .tip a:hover {
-  text-decoration: underline;
+  background-color: var(--primary-text-color);
 }
 
 .arrowButton {
@@ -102,6 +108,19 @@
     padding-block-end: 1rem;
     text-align: left;
   }
+
+  .slideText {
+    text-align: justify;
+  }
+
+  .tip {
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .tip a {
+    border-radius: 0 0 9999px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -109,4 +128,6 @@
     font-size: 1.2rem;
     text-align: left;
   }
+
+  
 }

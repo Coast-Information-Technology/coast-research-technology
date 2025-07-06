@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import styles from './carousel.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 interface Slide {
   id: string;
@@ -62,8 +63,10 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
                 <h2 className={styles.slideHead}>{slide.heading}</h2>
                 <p className={styles.slideText}>{slide.text}</p>
                 <p className={styles.tip}>
-                  {slide.tip}{' '}
-                  <Link href={slide.url || '#'}> {slide.linkText} </Link>
+                  {slide.tip}{' '}<br />
+                  <Button asChild variant="gradient" size="lg">
+                    <Link href={slide.url || '#'}>{slide.linkText}</Link>
+                  </Button>
                 </p>
               </div>
             </div>
