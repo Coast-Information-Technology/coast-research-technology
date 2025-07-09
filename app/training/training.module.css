@@ -1,361 +1,693 @@
-.techie {
-    background-image: var(--clr-training-gradient);
-    position: relative;
-    overflow: hidden;
-    color: var(--clr-notable);
+/* Modern Training Page Styles */
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(97, 0, 131, 0.1) 0%, rgba(97, 0, 131, 0.5) 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.coastTechie {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 0;
-    width: 100%;
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.coastTechie2 {
-    display: none;
-    mix-blend-mode: hard-light;
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
-.coastTech {
-    position: absolute;
-    top: 5rem;
-    left: 3rem;
-    max-width: 25%;
-    color: var(--plain-color);
-    font-weight: 300;
-    font-size: 2rem;
+.heroImageMobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.coastTech span {
-    font-weight: 700;
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.coastTechText {
-    color: var(--plain-color);
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.heroText {
+  grid-column: 1;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--plain-color);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.highlight {
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.heroDescription {
+  grid-column: 2;
+  text-align: center;
+  color: var(--plain-color);
+}
+
+.descriptionTitle {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.descriptionText {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.courseCategories {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+.categoryLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.categoryCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.categoryCard:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.categoryImage {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.categoryCard:hover .categoryImage {
+  transform: scale(1.1);
+  filter: brightness(0.7);
+}
+
+.categoryOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(97, 0, 131, 0.8), rgba(97, 0, 131, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.categoryCard:hover .categoryOverlay {
+  opacity: 1;
+}
+
+.categoryTitle {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+/* Coast Packs Section */
+.coastPacksSection {
+  position: relative;
+  padding: 2rem 0;
+  background: var(--clr-training-gradient);
+  overflow: hidden;
+}
+
+.packsHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.packsHeaderContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.packsGraphic {
+  animation: floatPolygon 3s ease-in-out infinite;
+  filter: drop-shadow(0px 4px 8px rgba(97, 0, 131, 0.2));
+}
+
+.packsTitle {
+  font-family: var(--ff-head);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--primary-text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.packsSubtitle {
+  font-size: var(--fs-nm);
+  color: var(--clr-secondary-text);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.packsContainer {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.packsImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.idCard {
+  position: absolute;
+  bottom: -8rem;
+  right: 6rem;
+  width: 15rem;
+  height: auto;
+  animation: floatCard 3s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatPolygon {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Training Section */
+.trainingSection {
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.trainingSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(97, 0, 131, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(97, 0, 131, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.trainingHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.trainingHeaderContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.trainingGraphic {
+  animation: floatPolygon 3s ease-in-out infinite;
+  filter: drop-shadow(0px 4px 8px rgba(97, 0, 131, 0.2));
+}
+
+.trainingTitle {
+  font-family: var(--ff-head);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--primary-text-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.trainingSubtitle {
+  font-size: var(--fs-nm);
+  color: var(--clr-secondary-text);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
     text-align: center;
-    top: 50%;
-    right: -14rem;
-    transform: translate(0, 50%);
-    line-height: 1.2;
-}
+  }
 
-.coastTechText h1 {
-    font-size: 3rem;
-    font-weight: 300;
-}
+  .heroText {
+    grid-column: 1;
+    order: 1;
+  }
 
-.coastTechText span {
-    font-weight: 700;
-    font-size: 3rem;
-}
+  .heroDescription {
+    grid-column: 1;
+    order: 2;
+  }
 
-.coastTechText p {
-    max-width: 50%;
-}
-
-.coastTechText {
-    top: 15rem;
-    right: -12rem;
-}
-
-.coastTechText h2 {
-    font-size: 3.5rem;
-    font-weight: 300;
-}
-
-.coastTechText span {
-    font-weight: 700;
-    font-size: 3.5rem;
-}
-
-.coastTechText p {
-    max-width: 50%;
-}
-
-.techiePacks {
-    width: 100%;
+  .courseCategories {
     position: relative;
-}
-
-.heroImagesContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 70vw;
-    position: absolute;
-    bottom: 10rem;
-    right: 0;
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(12.4px);
-    -webkit-backdrop-filter: blur(12.4px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 1rem;
-}
-
-.imageWrapper {
-    position: relative;
-}
-
-.vrImage {
-    transition: transform 0.5s ease;
-}
-
-.vrImage:hover {
-    transform: translateY(-1.5rem);
-    opacity: 0.2;
-}
-
-.hoverText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 1.5rem;
-    opacity: 0.3;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    text-align: center;
-    font-weight: 500;
-}
-
-.imageWrapper:hover .hoverText {
-    opacity: 1;
-}
-
-.welcome {
-    font-weight: 500;
-    position: absolute;
-    top: 50%;
-}
-
-.coastPacks {
-    position: relative;
-}
-
-.IDCard {
-    width: 15rem;
-    height: auto;
-    position: absolute;
-    bottom: -28rem;
-    right: 6rem;
-}
-
-
-@media (max-width: 1100px) {
-    .coastTechText {
-        right: -15rem;
-    }
-
-    .coastTechText h1 {
-        font-size: 2.5rem;
-        font-weight: 300;
-    }
-
-    .coastTechText span {
-        font-weight: 700;
-        font-size: 2.5rem;
-    }
-
-    .coastTechText p {
-        max-width: 40%;
-    }
-
-    .vrImage {
-        width: 150px;
-    }
-
-    .heroImagesContainer {
-        bottom: 6rem;
-    }
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 2rem;
+    order: 3;
+  }
 }
 
 @media (max-width: 1024px) {
-    .coastTech {
-        left: 4rem;
-        font-size: 1.5rem;
-    }
+  .heroContent {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 
-    .coastTechText {
-        top: 13rem;
-    }
-}
+  .courseCategories {
+    gap: 1rem;
+    padding: 1rem;
+  }
 
-@media (max-width: 950px) {
-    /* .techie {
-        padding-top: 5rem;
-    } */
+  .categoryImage {
+    width: 100px;
+    height: 100px;
+  }
 
-    .coastTech {
-        top: 9rem;
-        left: 2rem;
-    }
+  .idCard {
+    right: 3rem;
+    width: 12rem;
+  }
 
-    .coastTechText {
-        top: 14rem;
-        right: -13rem;
-    }
+  .packsHeader {
+    padding: 0 1.5rem;
+  }
 
-    .coastTechText h1 {
-        font-size: 2rem;
-        font-weight: 300;
-    }
+  .packsTitle {
+    font-size: var(--fs-md);
+  }
 
-    .coastTechText span {
-        font-weight: 700;
-        font-size: 2rem;
-    }
+  .trainingHeader {
+    padding: 0 1.5rem;
+  }
 
-    .coastTechText p {
-        max-width: 40%;
-        font-weight: 300;
-        font-size: 14px;
-    }
-
-    .heroImagesContainer {
-        width: 80%;
-    }
-
-    .hoverText {
-        font-size: 1rem;
-    }
+  .trainingTitle {
+    font-size: var(--fs-md);
+  }
 }
 
 @media (max-width: 768px) {
-    .heroImagesContainer {
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        justify-content: space-around;
-    }
+  .heroImage {
+    display: none;
+  }
 
-    .coastTech {
-        top: 2rem;
-        left: 4rem;
-        font-size: 1.5rem;
-        max-width: 15%;
-    }
+  .heroImageMobile {
+    display: block;
+  }
 
-    .coastTechie {
-        display: none;
-    }
+  .heroContent {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 1rem;
+  }
 
-    .coastTechie2 {
-        display: flex;
-    }
+  .heroTitle {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    margin-bottom: 1.5rem;
+  }
 
-    .coastTechText {
-        bottom: 50%;
-        left: 50%;
-        transform: translate(-50%, 140%);
-    }
+  .descriptionTitle {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
 
-    .coastTechText h1 {
-        font-size: 2.5rem;
-    }
+  .descriptionText {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
 
-    .coastTechText span {
-        font-size: 3rem;
-    }
+  .courseCategories {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
 
-    .coastTechText p {
-        max-width: 80%;
-    }
+  .categoryImage {
+    width: 80px;
+    height: 80px;
+  }
 
-    /* .coastTechText {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        top: 0;
-        z-index: ;
-    } */
+  .categoryTitle {
+    font-size: 0.75rem;
+  }
+
+  .idCard {
+    right: 2rem;
+    width: 10rem;
+    bottom: -6rem;
+  }
+
+  .packsHeader {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .packsHeaderContent {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .packsSubtitle {
+    font-size: var(--fs-sm);
+  }
+
+  .trainingHeader {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .trainingHeaderContent {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .trainingSubtitle {
+    font-size: var(--fs-sm);
+  }
 }
 
 @media (max-width: 640px) {
-    .coastTech {
-        left: 2rem;
-    }
+  .heroSection {
+    min-height: auto;
+    padding: 2rem 0;
+  }
 
-    .heroImagesContainer {
-        justify-content: space-around;
-    }
+  .heroContent {
+    padding: 1rem;
+    gap: 1rem;
+  }
 
-    .vrImage:hover {
-        transform: translateY(-1.2rem);
-        opacity: 0.3;
-    }
-}
+  .courseCategories {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+  }
 
-@media (max-width: 545px) {
-    .coastTech {
-        max-width: 26%;
-        font-size: 1.3rem;
-    }
+  .categoryCard {
+    width: 200px;
+  }
+
+  .categoryImage {
+    width: 100%;
+    height: 120px;
+  }
+
+  .idCard {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin: 2rem auto 0;
+    display: block;
+    width: 12rem;
+  }
+
+  .packsSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .trainingSubtitle {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .coastTech {
-        max-width: 23%;
-        font-size: 1rem;
-        line-height: 1.5;
-    }
+  .heroTitle {
+    font-size: 1.5rem;
+  }
 
-    .coastTechText h1 {
-        font-size: 2rem;
-    }
+  .descriptionTitle {
+    font-size: 1.8rem;
+  }
 
-    .coastTechText span {
-        font-size: 2rem;
-    }
+  .descriptionText {
+    font-size: 0.9rem;
+  }
 
-    .coastTechText p {
-        max-width: 80%;
-    }
+  .courseCategories {
+    width: 95%;
+    padding: 0.75rem;
+  }
 
-    .vrImage {
-        width: 80px;
-    }
+  .categoryCard {
+    width: 180px;
+  }
 
-    .hoverText {
-        font-size: 14px;
-    }
+  .categoryImage {
+    height: 100px;
+  }
+
+  .categoryTitle {
+    font-size: 0.7rem;
+  }
+
+  .packsTitle {
+    font-size: var(--fs-nm);
+  }
+
+  .packsSubtitle {
+    font-size: 0.8rem;
+  }
+
+  .trainingTitle {
+    font-size: var(--fs-nm);
+  }
+
+  .trainingSubtitle {
+    font-size: 0.8rem;
+  }
 }
 
-@media (max-width: 360px) {
-    .coastTech {
-        top: 3rem;
-        font-size: 0.8rem;
-        max-width: 18%;
-    }
+/* Legacy styles for backward compatibility */
+.techie {
+  background-image: var(--clr-training-gradient);
+  position: relative;
+  overflow: hidden;
+  color: var(--clr-notable);
+}
 
-    .coastTechText h1 {
-        font-size: 1.4rem;
-    }
+.coastTechie {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0;
+  width: 100%;
+}
 
-    .coastTechText span {
-        font-size: 1.6rem;
-    }
+.coastTechie2 {
+  display: none;
+  mix-blend-mode: hard-light;
+}
 
-    .coastTechText p {
-        font-size: .7rem;
-        max-width: 70%;
-    }
+.coastTech {
+  position: absolute;
+  top: 5rem;
+  left: 3rem;
+  max-width: 25%;
+  color: var(--plain-color);
+  font-weight: 300;
+  font-size: 2rem;
+}
 
-    .vrImage {
-        width: 60px;
-    }
+.coastTech span {
+  font-weight: 700;
+}
 
-    .hoverText {
-        font-size: 12px;
-    }
+.coastTechText {
+  color: var(--plain-color);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  top: 50%;
+  right: -14rem;
+  transform: translate(0, 50%);
+  line-height: 1.2;
+}
 
+.coastTechText h1 {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.coastTechText span {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.coastTechText p {
+  max-width: 50%;
+}
+
+.coastTechText {
+  top: 15rem;
+  right: -12rem;
+}
+
+.coastTechText h2 {
+  font-size: 3.5rem;
+  font-weight: 300;
+}
+
+.coastTechText span {
+  font-weight: 700;
+  font-size: 3.5rem;
+}
+
+.coastTechText p {
+  max-width: 50%;
+}
+
+.techiePacks {
+  width: 100%;
+  position: relative;
+}
+
+.heroImagesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+  position: absolute;
+  bottom: 10rem;
+  right: 0;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.4px);
+  -webkit-backdrop-filter: blur(12.4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.vrImage {
+  transition: transform 0.5s ease;
+}
+
+.vrImage:hover {
+  transform: translateY(-1.5rem);
+  opacity: 0.2;
+}
+
+.hoverText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  text-align: center;
+  font-weight: 500;
+}
+
+.imageWrapper:hover .hoverText {
+  opacity: 1;
+}
+
+.welcome {
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+}
+
+.coastPacks {
+  position: relative;
+}
+
+.IDCard {
+  width: 15rem;
+  height: auto;
+  position: absolute;
+  bottom: -28rem;
+  right: 6rem;
 }

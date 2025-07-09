@@ -1,114 +1,452 @@
-/* Carousel.module.css */
+/* Modern Training Carousel Styles */
 
 .carouselContainer {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .slide {
-    text-align: center;
-    padding: 1rem 2rem;
+  text-align: center;
+  padding: 2rem 0;
 }
 
 .slideContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(97, 0, 131, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.students {
-    display: flex;
-    align-items: center;
-    height: 6vh;
-    background-color: var(--primary-text-color);
+.slideContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #610083, #808080);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-.cLipPath {
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+.slideContainer:hover::before {
+  transform: scaleX(1);
+}
+
+.imageSection {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.imageWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slideImage {
-    width: 15vw;
-    margin-block: 4rem 1rem;
-    object-fit: contain;
-    height: 30vh;
-    position: relative;
-    background: var(--clr-secondary-text);
-    margin: var(--m);
-    height: calc(var(--s)*1.1547);
-    align-content: center;
-    clip-path: polygon(50% 0%, 100% 18%, 100% 82%, 50% 100%, 0% 82%, 0% 18%);
-    object-fit: cover;
-    margin-bottom: calc(var(--m) - var(--s)*0.2);
-
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(97, 0, 131, 0.15);
+  transition: all 0.3s ease;
 }
 
+.slideContainer:hover .slideImage {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(97, 0, 131, 0.25);
+}
+
+.quoteIcon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-text-color), var(--clr-secondary));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(97, 0, 131, 0.3);
+}
+
+.studentInfo {
+  text-align: center;
+}
+
+.studentName {
+  font-family: var(--ff-head);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: #610083;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.studentPosition {
+  font-size: var(--fs-sm);
+  color: var(--clr-secondary);
+  margin: 0 0 1rem 0;
+  font-weight: var(--fw-medium);
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 14px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.contentSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.testimonialContent {
+  flex: 1;
+}
+
+.testimonialText {
+  color: #808080;
+  line-height: 1.7;
+  font-size: var(--fs-nm);
+  font-style: italic;
+  margin: 0;
+  text-align: left;
+}
+
+.testimonialFooter {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(97, 0, 131, 0.1);
+}
+
+.successIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.successDot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.successText {
+  font-size: var(--fs-sm);
+  color: #10b981;
+  font-weight: var(--fw-medium);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.navigationButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(97, 0, 131, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(97, 0, 131, 0.1);
+  z-index: 10;
+}
+
+.navigationButton:hover {
+  background: var(--primary-text-color);
+  color: white;
+  border-color: var(--primary-text-color);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 20px rgba(97, 0, 131, 0.3);
+}
+
+.prevButton {
+  left: -24px;
+}
+
+.nextButton {
+  right: -24px;
+}
+
+/* Slick Carousel Customizations */
+.slick-dots {
+  bottom: -40px;
+}
+
+.slick-dots li button:before {
+  color: var(--primary-text-color);
+  opacity: 0.3;
+  font-size: 12px;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: var(--primary-text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .carouselContainer {
+    padding: 0 1.5rem;
+  }
+
+  .slideContainer {
+    padding: 2.5rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .imageSection {
+    flex: 0 0 250px;
+  }
+
+  .slideImage {
+    width: 180px;
+    height: 180px;
+  }
+
+  .navigationButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .prevButton {
+    left: -20px;
+  }
+
+  .nextButton {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slideContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .imageSection {
+    flex: none;
+    width: 100%;
+  }
+
+  .slideImage {
+    width: 150px;
+    height: 150px;
+  }
+
+  .studentName {
+    font-size: var(--fs-nm);
+  }
+
+  .testimonialText {
+    text-align: center;
+    font-size: var(--fs-sm);
+  }
+
+  .testimonialFooter {
+    margin-top: 1.5rem;
+  }
+
+  .successIndicator {
+    justify-content: center;
+  }
+
+  .navigationButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .prevButton {
+    left: -18px;
+  }
+
+  .nextButton {
+    right: -18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carouselContainer {
+    padding: 0 1rem;
+  }
+
+  .slideContainer {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .slideImage {
+    width: 120px;
+    height: 120px;
+  }
+
+  .quoteIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .studentName {
+    font-size: var(--fs-sm);
+  }
+
+  .studentPosition {
+    font-size: 0.8rem;
+  }
+
+  .testimonialText {
+    font-size: 0.9rem;
+  }
+
+  .navigationButton {
+    width: 32px;
+    height: 32px;
+  }
+
+  .prevButton {
+    left: -16px;
+  }
+
+  .nextButton {
+    right: -16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideContainer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .slideImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .quoteIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .studentName {
+    font-size: 0.9rem;
+  }
+
+  .studentPosition {
+    font-size: 0.7rem;
+  }
+
+  .testimonialText {
+    font-size: 0.8rem;
+  }
+
+  .successText {
+    font-size: 0.7rem;
+  }
+}
+
+/* Hide default slick arrows */
+.slick-prev:before,
+.slick-next:before {
+  display: none !important;
+}
+
+/* Legacy styles for backward compatibility */
+.students {
+  display: flex;
+  align-items: center;
+  height: 6vh;
+  background-color: var(--primary-text-color);
+}
+
+.cLipPath {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
 
 .slideHead {
-    font-size: var(--fs-md);
-    font-weight: var(--fw-bold);
-    color: #000;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: #000;
 }
 
 .slideText {
-    color: var(--primary-text-color);
-    font-size: var(--fs-nm);
-    font-weight: 500;
-    text-align: justify;
+  color: var(--primary-text-color);
+  font-size: var(--fs-nm);
+  font-weight: 500;
+  text-align: justify;
 }
 
 .arrowButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0.5rem;
-    background-color: var(--body-color);
-    color: var(--primary-text-color);
-    border-radius: 9999px;
-    border: 1px solid var(--primary-text-color);
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5rem;
+  background-color: var(--body-color);
+  color: var(--primary-text-color);
+  border-radius: 9999px;
+  border: 1px solid var(--primary-text-color);
+  cursor: pointer;
 }
 
 .arrowLeft {
-    left: 0.5rem;
+  left: 0.5rem;
 }
 
 .arrowRight {
-    right: 0.5rem;
+  right: 0.5rem;
 }
 
-@media (min-width: 768px) {
-    .slideContainer {
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        height: 100vh;
-        padding: 0 6rem;
-    }
-
-    .slideImage {
-        max-width: 50%;
-        height: 20vh;
-        margin-block-end: 2rem;
-        transform: translateX(2rem);
-    }
-
-    .slideContent {
-        max-width: 50%;
-    }
-
-    .slideHead {
-        font-size: var(--fs-xl);
-        padding-block-end: 1.5rem;
-        text-align: left;
-    }
-}
-
-@media (min-width: 1024px) {
-    .slideText {
-        font-size: 1.2rem;
-        text-align: left;
-    }
+.position {
+  color: var(--clr-secondary);
+  font-size: var(--fs-sm);
+  margin-top: 0.5rem;
 }

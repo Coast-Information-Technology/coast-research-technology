@@ -15,113 +15,175 @@ const page = () => {
           skills.
         </p>
       </div>
-      <section className={style.techie}>
-        <Image
-          src="/coast-segun-dup.png"
-          alt="coast-tech individual"
-          width={1000}
-          height={1000}
-          className={style.coastTechie}
-          priority={true}
-        />
-        <Image
-          src="/coast-segun.png"
-          alt="coast-tech individual"
-          width={1000}
-          height={1000}
-          className={style.coastTechie2}
-          priority={true}
-        />
-        <p className={style.coastTech}>
-          Do you want <span>COASTECH</span> to your name?
-        </p>
-        {/* <div className={style.coastStudent}> */}
-        <div className={style.coastTechText}>
-          <h2>
-            Meet <br />
-            <span>COASTECH SEGUN</span>
-          </h2>
-          <p>
-            Hello World! Connect with us; the global community for designers,
-            creative professionals, analysts and developers.
+      
+      {/* Hero Section */}
+      <section className={style.heroSection}>
+        <div className={style.heroBackground}>
+          <Image
+            src="/coast-segun-dup.png"
+            alt="Coast Research Technology Hero"
+            width={1000}
+            height={1000}
+            className={style.heroImage}
+            priority={true}
+          />
+          <Image
+            src="/coast-segun.png"
+            alt="Coast Research Technology Hero Mobile"
+            width={1000}
+            height={1000}
+            className={style.heroImageMobile}
+            priority={true}
+          />
+        </div>
+
+        <div className={style.heroContent}>
+          <div className={style.heroText}>
+            <h1 className={style.heroTitle}>
+              Do you want <span className={style.highlight}>COASTECH</span> to your name?
+            </h1>
+          </div>
+
+          <div className={style.heroDescription}>
+            <h2 className={style.descriptionTitle}>
+              Meet <br />
+              <span className={style.highlight}>COASTECH SEGUN</span>
+            </h2>
+            <p className={style.descriptionText}>
+              Hello World! Connect with us; the global community for designers,
+              creative professionals, analysts and developers.
+            </p>
+          </div>
+
+          <div className={style.courseCategories}>
+            <Link href="#" className={style.categoryLink}>
+              <div className={style.categoryCard}>
+                <Image
+                  src="/vision-1.png"
+                  alt="UI/UX Design"
+                  width={200}
+                  height={200}
+                  className={style.categoryImage}
+                />
+                <div className={style.categoryOverlay}>
+                  <h3 className={style.categoryTitle}>UI/UX</h3>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="#" className={style.categoryLink}>
+              <div className={style.categoryCard}>
+                <Image
+                  src="/vision-2.png"
+                  alt="Web Development"
+                  width={200}
+                  height={200}
+                  className={style.categoryImage}
+                />
+                <div className={style.categoryOverlay}>
+                  <h3 className={style.categoryTitle}>WEB DEVELOPMENT</h3>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="#" className={style.categoryLink}>
+              <div className={style.categoryCard}>
+                <Image
+                  src="/vision-3.png"
+                  alt="App Development"
+                  width={200}
+                  height={200}
+                  className={style.categoryImage}
+                />
+                <div className={style.categoryOverlay}>
+                  <h3 className={style.categoryTitle}>APP DEVELOPMENT</h3>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="#" className={style.categoryLink}>
+              <div className={style.categoryCard}>
+                <Image
+                  src="/vision-4.png"
+                  alt="Database Administration"
+                  width={200}
+                  height={200}
+                  className={style.categoryImage}
+                />
+                <div className={style.categoryOverlay}>
+                  <h3 className={style.categoryTitle}>DATABASE ADMINISTRATOR</h3>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Coast Packs Section */}
+      <section className={style.coastPacksSection}>
+        <div className={style.packsHeader}>
+          <div className={style.packsHeaderContent}>
+            <Image
+              src="/heading_polygon.png"
+              alt=""
+              width={50}
+              height={50}
+              className={style.packsGraphic}
+            />
+            <h2 className={style.packsTitle}>
+              Training Packages
+            </h2>
+          </div>
+          <p className={style.packsSubtitle}>
+            Choose from our comprehensive training packages designed to accelerate your tech career journey. 
+            Each package includes hands-on projects, industry mentorship, and certification upon completion.
           </p>
         </div>
-
-        <div className={style.heroImagesContainer}>
-          <Link href="#">
-            <div className={style.imageWrapper}>
-              <Image
-                src="/vision-1.png"
-                alt="VR image"
-                width={200}
-                height={200}
-                className={style.vrImage}
-              />
-              <div className={style.hoverText}>UI/UX</div>
-            </div>
-          </Link>
-          <Link href="#">
-            <div className={style.imageWrapper}>
-              <Image
-                src="/vision-2.png"
-                alt="VR image"
-                width={200}
-                height={200}
-                className={style.vrImage}
-              />
-              <div className={style.hoverText}>WEB DEVELOPMENT</div>
-            </div>
-          </Link>
-          <Link href="#">
-            <div className={style.imageWrapper}>
-              <Image
-                src="/vision-3.png"
-                alt="VR image"
-                width={200}
-                height={200}
-                className={style.vrImage}
-              />
-              <div className={style.hoverText}>APP DEVELOPMENT</div>
-            </div>
-          </Link>
-          <Link href="#">
-            <div className={style.imageWrapper}>
-              <Image
-                src="/vision-4.png"
-                alt="VR image"
-                width={200}
-                height={200}
-                className={style.vrImage}
-              />
-              <div className={style.hoverText}>DATABASE ADMINISTRATOR</div>
-            </div>
-          </Link>
+        
+        <div className={style.packsContainer}>
+          <Image
+            src="/coast-techie-packs.png"
+            alt="Coast Research Technology Training Packs"
+            width={1000}
+            height={1000}
+            className={style.packsImage}
+          />
+          {/* <Image
+            src="/ID-card.png"
+            alt="Coast Research Technology ID Card"
+            width={1000}
+            height={1000}
+            className={style.idCard}
+          /> */}
         </div>
-        {/* </div> */}
       </section>
-      <section className={style.coastPacks}>
-        {/* <div className={style.welcome}>
-          <h2>Welcome to</h2>
-          <h3>Coast Research Technology</h3>
-        </div> */}
-        <Image
-          src="/coast-techie-packs.png"
-          alt="coast-tech individual"
-          width={1000}
-          height={1000}
-          className={style.techiePacks}
-        />
 
-        <Image
-          src="/ID-card.png"
-          alt="Coast Research Technology ID Card"
-          width={1000}
-          height={1000}
-          className={style.IDCard}
-        />
-      </section>
-      <section>
-        <TrainingCarousel slides={trainingSlides} />
+      {/* Training Carousel Section */}
+      <section className={style.trainingSection}>
+        <div className={style.trainingHeader}>
+          <div className={style.trainingHeaderContent}>
+            <Image
+              src="/heading_polygon.png"
+              alt=""
+              width={50}
+              height={50}
+              className={style.trainingGraphic}
+            />
+            <h2 className={style.trainingTitle}>
+              Student Success Stories
+            </h2>
+          </div>
+          <p className={style.trainingSubtitle}>
+            Discover how our comprehensive training programs have transformed careers and opened new opportunities 
+            in the tech industry. Hear directly from our graduates about their journey and achievements.
+          </p>
+        </div>
+        
+        <TrainingCarousel slides={trainingSlides.map(slide => ({
+          ...slide,
+          name: slide.name || '',
+          position: slide.position || 'Student'
+        }))} />
       </section>
     </main>
   );
